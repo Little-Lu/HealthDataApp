@@ -1,4 +1,4 @@
-# HealthCheckApp
+# HealthDataApp
 ## Framework
 - Jersey
 - Spring

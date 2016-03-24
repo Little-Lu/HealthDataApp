@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeUnitVehicleRecordDao">  
+    <resultMap type="com.joye.health.model.emergency.HeUnitVehicleRecord" id="HeUnitVehicleRecord">
+	</resultMap>
+    <select id="queryHeUnitVehicleRecord" resultMap="HeUnitVehicleRecord">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			AREA_CODE as areaCode,
+			BAR_LINE as barLine,
+			VEHICLE_NAME as vehicleName,
+			VEHICLE_BRAND as vehicleBrand,
+			SEAT_NUM as seatNum,
+			TONNAGE_NUM as tonnageNum,
+			DRIVER_NAME as driverName,
+			UNIT_PHONE as unitPhone,
+			DRIVER_PHONE as driverPhone,
+			to_char(BUY_DATE,'yyyy-mm-dd hh24:mi:ss') as buyDate,
+			VEHICLE_CIRCS as vehicleCircs,
+			VEHICLE_TYPE as vehicleType,
+			USE_TYPE as useType,
+			USE_REMARK as useRemark,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_UNIT_VEHICLE_RECORD
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeUnitVehicleRecord" parameterType="com.joye.health.model.emergency.HeUnitVehicleRecord" >
+         insert into HE_UNIT_VEHICLE_RECORD (AUTO_ID,AREA_CODE,BAR_LINE,VEHICLE_NAME,VEHICLE_BRAND,SEAT_NUM,TONNAGE_NUM,DRIVER_NAME,UNIT_PHONE,DRIVER_PHONE,BUY_DATE,VEHICLE_CIRCS,VEHICLE_TYPE,USE_TYPE,USE_REMARK,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_UNIT_VEHICLE_RECORD.nextval,
+			#{areaCode, jdbcType=VARCHAR},
+			#{barLine, jdbcType=VARCHAR},
+			#{vehicleName, jdbcType=VARCHAR},
+			#{vehicleBrand, jdbcType=VARCHAR},
+			#{seatNum, jdbcType=VARCHAR},
+			#{tonnageNum, jdbcType=VARCHAR},
+			#{driverName, jdbcType=VARCHAR},
+			#{unitPhone, jdbcType=VARCHAR},
+			#{driverPhone, jdbcType=VARCHAR},
+			to_date(#{buyDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{vehicleCircs, jdbcType=VARCHAR},
+			#{vehicleType, jdbcType=VARCHAR},
+			#{useType, jdbcType=VARCHAR},
+			#{useRemark, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeUnitVehicleRecord" parameterType="com.joye.health.model.emergency.HeUnitVehicleRecord" >
+         update  HE_UNIT_VEHICLE_RECORD 
+         <set>
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "barLine != null">BAR_LINE=#{barLine},</if >
+			<if test= "vehicleName != null">VEHICLE_NAME=#{vehicleName},</if >
+			<if test= "vehicleBrand != null">VEHICLE_BRAND=#{vehicleBrand},</if >
+			<if test= "seatNum != null">SEAT_NUM=#{seatNum},</if >
+			<if test= "tonnageNum != null">TONNAGE_NUM=#{tonnageNum},</if >
+			<if test= "driverName != null">DRIVER_NAME=#{driverName},</if >
+			<if test= "unitPhone != null">UNIT_PHONE=#{unitPhone},</if >
+			<if test= "driverPhone != null">DRIVER_PHONE=#{driverPhone},</if >
+			<if test= "buyDate != null">BUY_DATE=to_date(#{buyDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+			<if test= "vehicleCircs != null">VEHICLE_CIRCS=#{vehicleCircs},</if >
+			<if test= "vehicleType != null">VEHICLE_TYPE=#{vehicleType},</if >
+			<if test= "useType != null">USE_TYPE=#{useType},</if >
+			<if test= "useRemark != null">USE_REMARK=#{useRemark},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeUnitVehicleRecord" parameterType="String">
+		DELETE FROM HE_UNIT_VEHICLE_RECORD WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

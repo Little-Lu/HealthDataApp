@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventFirstReportDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventFirstReport" id="HeEventFirstReport">
+	</resultMap>
+    <select id="queryHeEventFirstReport" resultMap="HeEventFirstReport">
+    <![CDATA[ 
+		SELECT
+			RID as rid,
+			EVENT_CODE as eventCode,
+			EVENT_NAME as eventName,
+			ZONE_CODE as zoneCode,
+			EVENT_PLACE as eventPlace,
+			to_char(BEGIN_DATE,'yyyy-mm-dd hh24:mi:ss') as beginDate,
+			EVENT_SORT as eventSort,
+			GRADE as grade,
+			CAUSE as cause,
+			AFFECT_ZONE as affectZone,
+			AFFECT_EXTENT as affectExtent,
+			EXPENSE as expense,
+			RANGE as range,
+			INFLUENCE_NUM as influenceNum,
+			ISOLATION_NUM as isolationNum,
+			INFLUENCE as influence,
+			ILL_NUM as illNum,
+			POISON_NUM as poisonNum,
+			BURN_NUM as burnNum,
+			HURT_NUM as hurtNum,
+			HOSPITAL_NUM as hospitalNum,
+			DEATH_NUM as deathNum,
+			RANGE_TOTAL as rangeTotal,
+			INFLUENCE_TOTAL as influenceTotal,
+			ISOLATION_TOTAL as isolationTotal,
+			COMMUNITY_TOTAL as communityTotal,
+			ILL_TOTAL as illTotal,
+			POISON_TOTAL as poisonTotal,
+			BURN_TOTAL as burnTotal,
+			HURT_TOTAL as hurtTotal,
+			HOSPITAL_TOTAL as hospitalTotal,
+			DEATH_TOTAL as deathTotal,
+			AFFECT_REMARK as affectRemark,
+			INFO_SOURCE as infoSource,
+			REPORT_DEPT as reportDept,
+			to_char(RECEIVE_DATE,'yyyy-mm-dd hh24:mi:ss') as receiveDate,
+			REPORT_UNIT as reportUnit,
+			REPORT_UNITNAME as reportUnitname,
+			REPORT_IDCARD as reportIdcard,
+			REPORT_MAN as reportMan,
+			PHONE as phone,
+			to_char(REPORT_DATE,'yyyy-mm-dd hh24:mi:ss') as reportDate,
+			EVENT_STATE as eventState,
+			LONGITUDE as longitude,
+			LATITUDE as latitude,
+			IFSTAT as ifstat,
+			OPEN_FLAG as openFlag,
+			AUDIT_UNIT as auditUnit,
+			AUDIT_UNITNAME as auditUnitname,
+			AUDIT_IDCARD as auditIdcard,
+			AUDIT_NAME as auditName,
+			to_char(AUDIT_DATE,'yyyy-mm-dd hh24:mi:ss') as auditDate
+		FROM HE_EVENT_FIRST_REPORT
+    ]]> 
+    </select>  
+    <insert id="insertHeEventFirstReport" parameterType="com.joye.health.model.emergency.HeEventFirstReport" >
+         insert into HE_EVENT_FIRST_REPORT (RID,EVENT_CODE,EVENT_NAME,ZONE_CODE,EVENT_PLACE,BEGIN_DATE,EVENT_SORT,GRADE,CAUSE,AFFECT_ZONE,AFFECT_EXTENT,EXPENSE,RANGE,INFLUENCE_NUM,ISOLATION_NUM,INFLUENCE,ILL_NUM,POISON_NUM,BURN_NUM,HURT_NUM,HOSPITAL_NUM,DEATH_NUM,RANGE_TOTAL,INFLUENCE_TOTAL,ISOLATION_TOTAL,COMMUNITY_TOTAL,ILL_TOTAL,POISON_TOTAL,BURN_TOTAL,HURT_TOTAL,HOSPITAL_TOTAL,DEATH_TOTAL,AFFECT_REMARK,INFO_SOURCE,REPORT_DEPT,RECEIVE_DATE,REPORT_UNIT,REPORT_UNITNAME,REPORT_IDCARD,REPORT_MAN,PHONE,REPORT_DATE,EVENT_STATE,LONGITUDE,LATITUDE,IFSTAT,OPEN_FLAG,AUDIT_UNIT,AUDIT_UNITNAME,AUDIT_IDCARD,AUDIT_NAME,AUDIT_DATE) 
+         values 
+          ( #{rid, jdbcType=VARCHAR},
+			#{eventCode, jdbcType=VARCHAR},
+			#{eventName, jdbcType=VARCHAR},
+			#{zoneCode, jdbcType=VARCHAR},
+			#{eventPlace, jdbcType=VARCHAR},
+			to_date(#{beginDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{eventSort, jdbcType=VARCHAR},
+			#{grade, jdbcType=VARCHAR},
+			#{cause, jdbcType=VARCHAR},
+			#{affectZone, jdbcType=VARCHAR},
+			#{affectExtent, jdbcType=VARCHAR},
+			#{expense, jdbcType=VARCHAR},
+			#{range, jdbcType=VARCHAR},
+			#{influenceNum, jdbcType=VARCHAR},
+			#{isolationNum, jdbcType=VARCHAR},
+			#{influence, jdbcType=VARCHAR},
+			#{illNum, jdbcType=VARCHAR},
+			#{poisonNum, jdbcType=VARCHAR},
+			#{burnNum, jdbcType=VARCHAR},
+			#{hurtNum, jdbcType=VARCHAR},
+			#{hospitalNum, jdbcType=VARCHAR},
+			#{deathNum, jdbcType=VARCHAR},
+			#{rangeTotal, jdbcType=VARCHAR},
+			#{influenceTotal, jdbcType=VARCHAR},
+			#{isolationTotal, jdbcType=VARCHAR},
+			#{communityTotal, jdbcType=VARCHAR},
+			#{illTotal, jdbcType=VARCHAR},
+			#{poisonTotal, jdbcType=VARCHAR},
+			#{burnTotal, jdbcType=VARCHAR},
+			#{hurtTotal, jdbcType=VARCHAR},
+			#{hospitalTotal, jdbcType=VARCHAR},
+			#{deathTotal, jdbcType=VARCHAR},
+			#{affectRemark, jdbcType=VARCHAR},
+			#{infoSource, jdbcType=VARCHAR},
+			#{reportDept, jdbcType=VARCHAR},
+			to_date(#{receiveDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{reportUnit, jdbcType=VARCHAR},
+			#{reportUnitname, jdbcType=VARCHAR},
+			#{reportIdcard, jdbcType=VARCHAR},
+			#{reportMan, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			to_date(#{reportDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{eventState, jdbcType=VARCHAR},
+			#{longitude, jdbcType=VARCHAR},
+			#{latitude, jdbcType=VARCHAR},
+			#{ifstat, jdbcType=VARCHAR},
+			#{openFlag, jdbcType=VARCHAR},
+			#{auditUnit, jdbcType=VARCHAR},
+			#{auditUnitname, jdbcType=VARCHAR},
+			#{auditIdcard, jdbcType=VARCHAR},
+			#{auditName, jdbcType=VARCHAR},
+			to_date(#{auditDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss') )
+    </insert >
+    
+    <update id="updateHeEventFirstReport" parameterType="com.joye.health.model.emergency.HeEventFirstReport" >
+         update  HE_EVENT_FIRST_REPORT 
+         <set>
+				<if test= "eventCode != null">EVENT_CODE=#{eventCode},</if >
+				<if test= "eventName != null">EVENT_NAME=#{eventName},</if >
+				<if test= "zoneCode != null">ZONE_CODE=#{zoneCode},</if >
+				<if test= "eventPlace != null">EVENT_PLACE=#{eventPlace},</if >
+				<if test= "beginDate != null">BEGIN_DATE=to_date(#{beginDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "eventSort != null">EVENT_SORT=#{eventSort},</if >
+				<if test= "grade != null">GRADE=#{grade},</if >
+				<if test= "cause != null">CAUSE=#{cause},</if >
+				<if test= "affectZone != null">AFFECT_ZONE=#{affectZone},</if >
+				<if test= "affectExtent != null">AFFECT_EXTENT=#{affectExtent},</if >
+				<if test= "expense != null">EXPENSE=#{expense},</if >
+				<if test= "range != null">RANGE=#{range},</if >
+				<if test= "influenceNum != null">INFLUENCE_NUM=#{influenceNum},</if >
+				<if test= "isolationNum != null">ISOLATION_NUM=#{isolationNum},</if >
+				<if test= "influence != null">INFLUENCE=#{influence},</if >
+				<if test= "illNum != null">ILL_NUM=#{illNum},</if >
+				<if test= "poisonNum != null">POISON_NUM=#{poisonNum},</if >
+				<if test= "burnNum != null">BURN_NUM=#{burnNum},</if >
+				<if test= "hurtNum != null">HURT_NUM=#{hurtNum},</if >
+				<if test= "hospitalNum != null">HOSPITAL_NUM=#{hospitalNum},</if >
+				<if test= "deathNum != null">DEATH_NUM=#{deathNum},</if >
+				<if test= "rangeTotal != null">RANGE_TOTAL=#{rangeTotal},</if >
+				<if test= "influenceTotal != null">INFLUENCE_TOTAL=#{influenceTotal},</if >
+				<if test= "isolationTotal != null">ISOLATION_TOTAL=#{isolationTotal},</if >
+				<if test= "communityTotal != null">COMMUNITY_TOTAL=#{communityTotal},</if >
+				<if test= "illTotal != null">ILL_TOTAL=#{illTotal},</if >
+				<if test= "poisonTotal != null">POISON_TOTAL=#{poisonTotal},</if >
+				<if test= "burnTotal != null">BURN_TOTAL=#{burnTotal},</if >
+				<if test= "hurtTotal != null">HURT_TOTAL=#{hurtTotal},</if >
+				<if test= "hospitalTotal != null">HOSPITAL_TOTAL=#{hospitalTotal},</if >
+				<if test= "deathTotal != null">DEATH_TOTAL=#{deathTotal},</if >
+				<if test= "affectRemark != null">AFFECT_REMARK=#{affectRemark},</if >
+				<if test= "infoSource != null">INFO_SOURCE=#{infoSource},</if >
+				<if test= "reportDept != null">REPORT_DEPT=#{reportDept},</if >
+				<if test= "receiveDate != null">RECEIVE_DATE=to_date(#{receiveDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "reportUnit != null">REPORT_UNIT=#{reportUnit},</if >
+				<if test= "reportUnitname != null">REPORT_UNITNAME=#{reportUnitname},</if >
+				<if test= "reportIdcard != null">REPORT_IDCARD=#{reportIdcard},</if >
+				<if test= "reportMan != null">REPORT_MAN=#{reportMan},</if >
+				<if test= "phone != null">PHONE=#{phone},</if >
+				<if test= "reportDate != null">REPORT_DATE=to_date(#{reportDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "eventState != null">EVENT_STATE=#{eventState},</if >
+				<if test= "longitude != null">LONGITUDE=#{longitude},</if >
+				<if test= "latitude != null">LATITUDE=#{latitude},</if >
+				<if test= "ifstat != null">IFSTAT=#{ifstat},</if >
+				<if test= "openFlag != null">OPEN_FLAG=#{openFlag},</if >
+				<if test= "auditUnit != null">AUDIT_UNIT=#{auditUnit},</if >
+				<if test= "auditUnitname != null">AUDIT_UNITNAME=#{auditUnitname},</if >
+				<if test= "auditIdcard != null">AUDIT_IDCARD=#{auditIdcard},</if >
+				<if test= "auditName != null">AUDIT_NAME=#{auditName},</if >
+				<if test= "auditDate != null">AUDIT_DATE=to_date(#{auditDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE RID = #{rid}
+    </update >
+    
+    <delete id="deleteHeEventFirstReport" parameterType="String">
+		DELETE FROM HE_EVENT_FIRST_REPORT WHERE RID = #{value}
+	</delete>
+</mapper>  

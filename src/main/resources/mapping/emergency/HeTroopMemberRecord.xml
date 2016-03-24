@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeTroopMemberRecordDao">  
+    <resultMap type="com.joye.health.model.emergency.HeTroopMemberRecord" id="HeTroopMemberRecord">
+	</resultMap>
+    <select id="queryHeTroopMemberRecord" resultMap="HeTroopMemberRecord">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			TROOP_NO as troopNo,
+			AREA_CODE as areaCode,
+			ID_NO as idNo,
+			NAME as name,
+			SEX as sex,
+			to_char(DATE_OF_BIRTH,'yyyy-mm-dd') as dateOfBirth,
+			DUTY_LEVEL_LEVEL as dutyLevelLevel,
+			DUTY_LEVEL_NAME as dutyLevelName,
+			TECHNICAL_POST_LEVEL as technicalPostLevel,
+			TECHNICAL_POST as technicalPost,
+			NATION as nation,
+			POLITY as polity,
+			WORK_UNIT_NAME as workUnitName,
+			WORK_UNIT_ADDRESS as workUnitAddress,
+			WORK_UNIT_CODE as workUnitCode,
+			PHONE as phone,
+			WORK_PHONE as workPhone,
+			WORK_FAX as workFax,
+			E_MAIL as eMail,
+			HOME_ADDRESS as homeAddress,
+			ZIP_CODE as zipCode,
+			HOUSE_PHONE as housePhone,
+			HEIGHT as height,
+			WEIGHT as weight,
+			Drug_allergy as drugAllergy,
+			HEALTH_STATUS as healthStatus,
+			MARITAL_STATE as maritalState,
+			GRADUATE as graduate,
+			SPECIALTY as specialty,
+			to_char(GRADUATE_DATE,'yyyy-mm-dd') as graduateDate,
+			FOREIGN_LANGUAGE as foreignLanguage,
+			MASTER_DEGREE as masterDegree,
+			CULTURE_DEGREE as cultureDegree,
+			SPECIALTY_SUMMARIZE as specialtySummarize,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_TROOP_MEMBER_RECORD
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeTroopMemberRecord" parameterType="com.joye.health.model.emergency.HeTroopMemberRecord" >
+         insert into HE_TROOP_MEMBER_RECORD (AUTO_ID,TROOP_NO,AREA_CODE,ID_NO,NAME,SEX,DATE_OF_BIRTH,DUTY_LEVEL_LEVEL,DUTY_LEVEL_NAME,TECHNICAL_POST_LEVEL,TECHNICAL_POST,NATION,POLITY,WORK_UNIT_NAME,WORK_UNIT_ADDRESS,WORK_UNIT_CODE,PHONE,WORK_PHONE,WORK_FAX,E_MAIL,HOME_ADDRESS,ZIP_CODE,HOUSE_PHONE,HEIGHT,WEIGHT,Drug_allergy,HEALTH_STATUS,MARITAL_STATE,GRADUATE,SPECIALTY,GRADUATE_DATE,FOREIGN_LANGUAGE,MASTER_DEGREE,CULTURE_DEGREE,SPECIALTY_SUMMARIZE,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_TROOP_MEMBER_RECORD.nextval,
+			#{troopNo, jdbcType=VARCHAR},
+			#{areaCode, jdbcType=VARCHAR},
+			#{idNo, jdbcType=VARCHAR},
+			#{name, jdbcType=VARCHAR},
+			#{sex, jdbcType=VARCHAR},
+			to_date(#{dateOfBirth, jdbcType=VARCHAR},'yyyy-mm-dd'),
+			#{dutyLevelLevel, jdbcType=VARCHAR},
+			#{dutyLevelName, jdbcType=VARCHAR},
+			#{technicalPostLevel, jdbcType=VARCHAR},
+			#{technicalPost, jdbcType=VARCHAR},
+			#{nation, jdbcType=VARCHAR},
+			#{polity, jdbcType=VARCHAR},
+			#{workUnitName, jdbcType=VARCHAR},
+			#{workUnitAddress, jdbcType=VARCHAR},
+			#{workUnitCode, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			#{workPhone, jdbcType=VARCHAR},
+			#{workFax, jdbcType=VARCHAR},
+			#{eMail, jdbcType=VARCHAR},
+			#{homeAddress, jdbcType=VARCHAR},
+			#{zipCode, jdbcType=VARCHAR},
+			#{housePhone, jdbcType=VARCHAR},
+			#{height, jdbcType=VARCHAR},
+			#{weight, jdbcType=VARCHAR},
+			#{drugAllergy, jdbcType=VARCHAR},
+			#{healthStatus, jdbcType=VARCHAR},
+			#{maritalState, jdbcType=VARCHAR},
+			#{graduate, jdbcType=VARCHAR},
+			#{specialty, jdbcType=VARCHAR},
+			to_date(#{graduateDate, jdbcType=VARCHAR},'yyyy-mm-dd'),
+			#{foreignLanguage, jdbcType=VARCHAR},
+			#{masterDegree, jdbcType=VARCHAR},
+			#{cultureDegree, jdbcType=VARCHAR},
+			#{specialtySummarize, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeTroopMemberRecord" parameterType="com.joye.health.model.emergency.HeTroopMemberRecord" >
+         update  HE_TROOP_MEMBER_RECORD 
+         <set>
+			<if test= "troopNo != null">TROOP_NO=#{troopNo},</if >
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "idNo != null">ID_NO=#{idNo},</if >
+			<if test= "name != null">NAME=#{name},</if >
+			<if test= "sex != null">SEX=#{sex},</if >
+			<if test= "dateOfBirth != null">DATE_OF_BIRTH=to_date(#{dateOfBirth},'yyyy-mm-dd'),</if >
+			<if test= "dutyLevelLevel != null">DUTY_LEVEL_LEVEL=#{dutyLevelLevel},</if >
+			<if test= "dutyLevelName != null">DUTY_LEVEL_NAME=#{dutyLevelName},</if >
+			<if test= "technicalPostLevel != null">TECHNICAL_POST_LEVEL=#{technicalPostLevel},</if >
+			<if test= "technicalPost != null">TECHNICAL_POST=#{technicalPost},</if >
+			<if test= "nation != null">NATION=#{nation},</if >
+			<if test= "polity != null">POLITY=#{polity},</if >
+			<if test= "workUnitName != null">WORK_UNIT_NAME=#{workUnitName},</if >
+			<if test= "workUnitAddress != null">WORK_UNIT_ADDRESS=#{workUnitAddress},</if >
+			<if test= "workUnitCode != null">WORK_UNIT_CODE=#{workUnitCode},</if >
+			<if test= "phone != null">PHONE=#{phone},</if >
+			<if test= "workPhone != null">WORK_PHONE=#{workPhone},</if >
+			<if test= "workFax != null">WORK_FAX=#{workFax},</if >
+			<if test= "eMail != null">E_MAIL=#{eMail},</if >
+			<if test= "homeAddress != null">HOME_ADDRESS=#{homeAddress},</if >
+			<if test= "zipCode != null">ZIP_CODE=#{zipCode},</if >
+			<if test= "housePhone != null">HOUSE_PHONE=#{housePhone},</if >
+			<if test= "height != null">HEIGHT=#{height},</if >
+			<if test= "weight != null">WEIGHT=#{weight},</if >
+			<if test= "drugAllergy != null">Drug_allergy=#{drugAllergy},</if >
+			<if test= "healthStatus != null">HEALTH_STATUS=#{healthStatus},</if >
+			<if test= "maritalState != null">MARITAL_STATE=#{maritalState},</if >
+			<if test= "graduate != null">GRADUATE=to_date(#{graduate},'yyyy-mm-dd'),</if >
+			<if test= "specialty != null">SPECIALTY=#{specialty},</if >
+			<if test= "graduateDate != null">GRADUATE_DATE=#{graduateDate},</if >
+			<if test= "foreignLanguage != null">FOREIGN_LANGUAGE=#{foreignLanguage},</if >
+			<if test= "masterDegree != null">MASTER_DEGREE=#{masterDegree},</if >
+			<if test= "cultureDegree != null">CULTURE_DEGREE=#{cultureDegree},</if >
+			<if test= "specialtySummarize != null">SPECIALTY_SUMMARIZE=#{specialtySummarize},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeTroopMemberRecord" parameterType="String">
+		DELETE FROM HE_TROOP_MEMBER_RECORD WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

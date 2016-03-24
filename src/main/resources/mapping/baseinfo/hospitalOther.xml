@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joye.health.dao.baseinfo.IHospitalOtherDao">
+	<!-- Result Map -->
+	<resultMap type="com.joye.health.model.baseinfo.HospitalOther"
+		id="BaseResultMap">
+		<result property="unitsCode" column="unitsCode" />
+		<result property="briefIntroduction" column="briefIntroduction"
+			jdbcType="CLOB" javaType="java.lang.String" typeHandler="com.joye.health.util.OracleClobTypeHandler" />
+	</resultMap>
+
+	<select id="queryHospitalOther" resultMap="BaseResultMap">
+    <![CDATA[ 
+        select
+		  UNITS_CODE as unitsCode,
+		  BRIEF_INTRODUCTION as briefIntroduction
+		from REG_HOSPITAL_OTHER
+    ]]>
+	</select>
+</mapper>  

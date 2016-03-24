@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.epidemic.IMssOutVisitDao">  
+    <resultMap type="com.joye.health.model.epidemic.MssOutVisit" id="MssOutVisit">
+	</resultMap>
+	<select id="queryMssOutVisitCount" resultType="int"  parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+			count(1)
+		FROM MSS_OUT_VISIT
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_VISIT_ID between #{startDate} and  #{endDate}]]>
+			</if>
+		</where>
+    </select>
+	
+    <select id="queryMssOutVisit" resultMap="MssOutVisit" parameterType="com.joye.health.model.common.PageParam">
+    SELECT
+      *
+    FROM
+	(	SELECT
+		  ROWNUM as rowno,
+		  AUTO_VISIT_ID as autoVisitId,
+		  UNITS_CODE as unitsCode,
+		  PERSON_ID_NO as personIdNo,
+		  HEALTH_CARD_NO as healthCardNo,
+		  PATIENT_ID as patientId,
+		  VISIT_NO as visitNo,
+		  PERSON_NAME as personName,
+		  SEX as sex,
+		  AGE as age,
+		  DATE_OF_BIRTH as dateOfBirth,
+		  ID_NO as idNo,
+		  NATIONALITY as nationality,
+		  NATION as nation,
+		  MARITAL_STATE as maritalState,
+		  OCCUPATION as occupation,
+		  CULTURE_DEGREE as cultureDegree,
+		  SERVICE_AGENCY as serviceAgency,
+		  ADDRESS_PROVINCE as addressProvince,
+		  ADDRESS_CITY as addressCity,
+		  ADDRESS_COUNTY as addressCounty,
+		  ADDRESS_TOWN as addressTown,
+		  ADDRESS_COUNTRY as addressCountry,
+		  ADDRESS as address,
+		  ZIP_CODE as zipCode,
+		  PHONE as phone,
+		  DRUG_ALLERGY_HISTORY as drugAllergyHistory,
+		  CLINIC_LABEL as clinicLabel,
+		  FIRST_VISIT_SIGN as firstVisitSign,
+		  to_char(VISIT_DATE,'yyyy-mm-dd hh24:mi:ss') as visitDate,
+		  VISIT_DEPT as visitDept,
+		  VISIT_GROUP as visitGroup,
+		  VISIT_DOCTOR as visitDoctor,
+		  PERSON_STATUS as personStatus,
+		  CHARGE_TYPE as chargeType,
+		  FUND_AREA_CODE as fundAreaCode,
+		  INSURANCE_NO as insuranceNo,
+		  INSURANCE_CARD_NO as insuranceCardNo,
+		  CURRENT_STATUS as currentStatus,
+		  MODIFY_PERSON as modifyPerson,
+		  to_char(MODIFY_DATE,'yyyy-mm-dd hh24:mi:ss') as modifyDate,
+		  TRANSFER_SIGN as transferSign,
+		  to_char(TRANSFER_DATE,'yyyy-mm-dd hh24:mi:ss') as transferDate
+		FROM MSS_OUT_VISIT
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_VISIT_ID between #{startDate} and #{endDate}]]>
+			</if>
+			<if test="endNum != null and endNum != 0">
+				<![CDATA[ AND ROWNUM <= #{endNum} ]]>
+			</if>
+		</where>
+	)  table_alias
+	<where>
+		<if test="startNum != null and startNum != 0">
+			<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+		</if>
+	</where>
+    </select>  
+</mapper>  

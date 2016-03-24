@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventTroopCollectDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventTroopCollect" id="HeEventTroopCollect">
+	</resultMap>
+    <select id="queryHeEventTroopCollect" resultMap="HeEventTroopCollect">
+    <![CDATA[ 
+		SELECT
+			TROOP_NO as troopNo,
+			AREA_CODE as areaCode,
+			TROOP_NAME as troopName,
+			GRADE as grade,
+			CAPTAIN_NAME as captainName,
+			CAPTAIN_PHONE as captainPhone,
+			EVENT_CLASS as eventClass,
+			BRIEF as brief,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_EVENT_TROOP_COLLECT
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeEventTroopCollect" parameterType="com.joye.health.model.emergency.HeEventTroopCollect" >
+         insert into HE_EVENT_TROOP_COLLECT (TROOP_NO,AREA_CODE,TROOP_NAME,GRADE,CAPTAIN_NAME,CAPTAIN_PHONE,EVENT_CLASS,BRIEF,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_EVENT_TROOP_COLLECT.nextval,
+			#{areaCode, jdbcType=VARCHAR},
+			#{troopName, jdbcType=VARCHAR},
+			#{grade, jdbcType=VARCHAR},
+			#{captainName, jdbcType=VARCHAR},
+			#{captainPhone, jdbcType=VARCHAR},
+			#{eventClass, jdbcType=VARCHAR},
+			#{brief, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeEventTroopCollect" parameterType="com.joye.health.model.emergency.HeEventTroopCollect" >
+         update  HE_EVENT_TROOP_COLLECT 
+         <set>
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "troopName != null">TROOP_NAME=#{troopName},</if >
+			<if test= "grade != null">GRADE=#{grade},</if >
+			<if test= "captainName != null">CAPTAIN_NAME=#{captainName},</if >
+			<if test= "captainPhone != null">CAPTAIN_PHONE=#{captainPhone},</if >
+			<if test= "eventClass != null">EVENT_CLASS=#{eventClass},</if >
+			<if test= "brief != null">BRIEF=#{brief},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE TROOP_NO = #{troopNo}
+    </update >
+    
+    <delete id="deleteHeEventTroopCollect" parameterType="String">
+		DELETE FROM HE_EVENT_TROOP_COLLECT WHERE TROOP_NO = #{value}
+	</delete>
+</mapper>  

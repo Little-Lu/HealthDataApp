@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.epidemic.IMssIndexDiagnoseDao">  
+    <resultMap type="com.joye.health.model.epidemic.MssIndexDiagnose" id="MssIndexDiagnose">
+	</resultMap>
+	<select id="queryMssIndexDiagnoseCount" resultType="int"  parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+			count(1)
+		FROM MSS_INDEX_DIAGNOSE
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_ID between #{startDate} and  #{endDate}]]>
+			</if>
+		</where>
+    </select>
+	
+    <select id="queryMssIndexDiagnose" resultMap="MssIndexDiagnose" parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+	      *
+	    FROM
+		(SELECT
+			ROWNUM as rowno,
+			AUTO_ID as autoId,
+			SERIAL_NO as serialNo,
+			DIAGNOSE_TYPE as diagnoseType,
+			DIAGNOSE_NAME as diagnoseName,
+			DIAGNOSE_CODE as diagnoseCode,
+			DIAGNOSE_CLASS as diagnoseClass,
+			ADM_PATIENT_CONDITION as admPatientCondition,
+			HERBALIST_SIGN as herbalistSign
+		FROM MSS_INDEX_DIAGNOSE
+		<where>
+				<if test="startDate != null and endDate != null">
+					<![CDATA[ AUTO_ID between #{startDate} and  #{endDate}]]>
+				</if>
+				<if test="endNum != null and endNum != 0">
+					<![CDATA[ AND ROWNUM <= #{endNum} ]]>
+				</if>
+			</where>
+		)  table_alias
+		<where>
+			<if test="startNum != null and startNum != 0">
+				<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+			</if>
+		</where>
+    </select>  
+</mapper>  

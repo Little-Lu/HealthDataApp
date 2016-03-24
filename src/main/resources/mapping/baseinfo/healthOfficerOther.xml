@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joye.health.dao.baseinfo.IHealthOfficerOtherDao">
+	<!-- Result Map -->
+	<resultMap type="com.joye.health.model.baseinfo.HealthOfficerOther"
+		id="BaseResultMap">
+		<result property="idNo" column="idNo" />
+		<result property="briefIntroduction" column="briefIntroduction"
+			jdbcType="CLOB" javaType="java.lang.String" typeHandler="com.joye.health.util.OracleClobTypeHandler" />
+	</resultMap>
+
+	<select id="queryHealthOfficerOtherCount" resultType="int">
+    <![CDATA[ 
+        select
+		  count(1)
+		from REG_HEALTH_OFFICER_OTHER
+    ]]>
+	</select>
+	
+	<select id="queryHealthOfficerOther" resultMap="BaseResultMap"  parameterType="com.joye.health.model.common.PageParam">
+        select 
+	      *
+	    from
+	    (
+	        select
+	          ROWNUM as rowno,
+			  ID_NO as idNo,
+			  BRIEF_INTRODUCTION as briefIntroduction
+			from REG_HEALTH_OFFICER_OTHER
+			<where>
+				<if test="endNum != null and endNum != 0">
+					<![CDATA[ ROWNUM <= #{endNum} ]]>
+				</if>
+			</where>
+		) table_alias
+		<where>
+			<if test="startNum != null and startNum != 0">
+				<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+			</if>
+		</where>
+	</select>
+</mapper>  

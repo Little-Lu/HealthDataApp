@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.epidemic.IMssIndexBasicDao">  
+    <resultMap type="com.joye.health.model.epidemic.MssIndexBasic" id="MssIndexBasic">
+	</resultMap>
+	<select id="queryMssIndexBasicCount" resultType="int"  parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+			count(1)
+		FROM MSS_INDEX_BASIC
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_ID between #{startDate} and  #{endDate} ]]>
+			</if>
+		</where>
+    </select>
+	
+    <select id="queryMssIndexBasic" resultMap="MssIndexBasic" parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+	      *
+	    FROM
+		(
+		SELECT
+			ROWNUM as rowno,
+			AUTO_ID as autoId,
+			UNITS_CODE as unitsCode,
+			UNITS_NAME as unitsName,
+			PERSON_ID_NO as personIdNo,
+			CHARGE_TYPE as chargeType,
+			HEALTH_CARD_NO as healthCardNo,
+			INP_NO as inpNo,
+			INP_TIMES as inpTimes,
+			EMR_NO as emrNo,
+			PATIENT_ID as patientId,
+			BED_NO as bedNo,
+			SORT_BED_NO as sortBedNo,
+			PERSON_NAME as personName,
+			SEX as sex,
+			to_char(DATE_OF_BIRTH,'yyyy-mm-dd') as dateOfBirth,
+			AGE as age,
+			AGE_MONTH as ageMonth,
+			ID_NO as idNo,
+			BLESS_WEIGHT as blessWeight,
+			IN_WEIGHT as inWeight,
+			BIRTH_PLACE_PROVINCE as birthPlaceProvince,
+			BIRTH_PLACE_CITY as birthPlaceCity,
+			BIRTH_PLACE_COUNTY as birthPlaceCounty,
+			CITIZENSHIP as citizenship,
+			NATIVE_PLACE_PROVINCE as nativePlaceProvince,
+			NATIVE_PLACE_CITY as nativePlaceCity,
+			NATIVE_PLACE_COUNTY as nativePlaceCounty,
+			NATION as nation,
+			OCCUPATION as occupation,
+			MARITAL_STATE as maritalState,
+			NOW_ADDRESS_PROVINCE as nowAddressProvince,
+			NOW_ADDRESS_CITY as nowAddressCity,
+			NOW_ADDRESS_COUNTY as nowAddressCounty,
+			NOW_ADDRESS as nowAddress,
+			NOW_PHONE as nowPhone,
+			NOW_ZIP_CODE as nowZipCode,
+			ADDRESS_PROVINCE as addressProvince,
+			ADDRESS_CITY as addressCity,
+			ADDRESS_COUNTY as addressCounty,
+			ADDRESS as address,
+			ZIP_CODE as zipCode,
+			SERVICE_AGENCY as serviceAgency,
+			SERVICE_PHONE as servicePhone,
+			SERVICE_ZIP_CODE as serviceZipCode,
+			NEXT_OF_KIN_NAME as nextOfKinName,
+			RELATIONSHIP as relationship,
+			NEXT_OF_KIN_ADDRESS as nextOfKinAddress,
+			NEXT_OF_KIN_PHONE as nextOfKinPhone,
+			GROUP_CODE as groupCode,
+			DEPT_CODE as deptCode,
+			WARD_CODE as wardCode,
+			ADM_ROUTE as admRoute,
+			to_char(ADM_DATE,'yyyy-mm-dd hh24:mi:ss') as admDate,
+			ADM_DEPT_CODE as admDeptCode,
+			ADM_DEPT_NAME as admDeptName,
+			ADM_GROUP_CODE as admGroupCode,
+			ADM_WARD_CODE as admWardCode,
+			ADM_WARD_NAME as admWardName,
+			TRANSFER_DEPT_CODE as transferDeptCode,
+			TRANSFER_DEPT_NAME as transferDeptName,
+			to_char(DISCHARGE_DATE,'yyyy-mm-dd hh24:mi:ss') as dischargeDate,
+			DISCHARGE_CONDITION as dischargeCondition,
+			DISCHARGE_DEPT_CODE as dischargeDeptCode,
+			DISCHARGE_DEPT_NAME as dischargeDeptName,
+			DISCHARGE_WARD_CODE as dischargeWardCode,
+			DISCHARGE_WARD_NAME as dischargeWardName,
+			FACT_IN_DAYS as factInDays,
+			NURSING_CLASS as nursingClass,
+			to_char(OPERATING_DATE,'yyyy-mm-dd hh24:mi:ss') as operatingDate,
+			CLINIC_DIAGNOSE as clinicDiagnose,
+			CLINIC_DIAGNOSE_ICD10 as clinicDiagnoseIcd10,
+			CLINIC_DIAGNOSE_CH as clinicDiagnoseCh,
+			CLINIC_DIAGNOSE_CH_ICD10 as clinicDiagnoseChIcd10,
+			DIAGNOSE_NAME as diagnoseName,
+			DIAGNOSE_CODE as diagnoseCode,
+			USE_TCM_PHARMACY_SIGN as useTcmPharmacySign,
+			USE_TCM_DEVICE_SIGN as useTcmDeviceSign,
+			USE_TCM_DIAGNOSE_SIGN as useTcmDiagnoseSign,
+			DISCRIMINATE_SIGN as discriminateSign,
+			TRAUMA_REASON as traumaReason,
+			TRAUMA_REASON_ICD10 as traumaReasonIcd10,
+			PATHOL_DIAGNOSE as patholDiagnose,
+			PATHOL_DIAGNOSE_ICD10 as patholDiagnoseIcd10,
+			PATHOL_NO as patholNo,
+			CURE_TYPE as cureType,
+			IS_ALLERGY as isAllergy,
+			DRUG_ALLERGY as drugAllergy,
+			CLINIC_ONP as clinicOnp,
+			INP_OUP as inpOup,
+			BEFORE_LATER_OPERATION as beforeLaterOperation,
+			CLINICAL_PATHOLOGY as clinicalPathology,
+			RADIATION_PATHOLOGY as radiationPathology,
+			NUM_SALVE as numSalve,
+			NUM_SALVE_SUCCESS as numSalveSuccess,
+			CORPSE_DIAGNOSE as corpseDiagnose,
+			BLOOD as blood,
+			RH_TYPE as rhType,
+			DEPT_DIRECTOR as deptDirector,
+			DOCTOR_DIRECTOR as doctorDirector,
+			DOCTOR_DIRECTOR_NAME as doctorDirectorName,
+			DOCTOR_IN_CHARGE as doctorInCharge,
+			DOCTOR_IN_CHARGE_NAME as doctorInChargeName,
+			DOCTOR_IN_HOSPITAL as doctorInHospital,
+			DOCTOR_IN_HOSPITAL_NAME as doctorInHospitalName,
+			RESPONSIBLE_NURSE as responsibleNurse,
+			DOCTOR_IN_ADVANCED as doctorInAdvanced,
+			INTERN_DOCTOR as internDoctor,
+			CODER as coder,
+			MEDICAL_RECORD_QUALITY as medicalRecordQuality,
+			QUALITY_DOCTOR as qualityDoctor,
+			QUALITY_NURSE as qualityNurse,
+			to_char(QUALITY_DATE,'yyyy-mm-dd hh24:mi:ss') as qualityDate,
+			DISCHARGE_MODE as dischargeMode,
+			RECEIVE_ORGANIZATION as receiveOrganization,
+			ADM_AGAIN_PLAN_SIGN as admAgainPlanSign,
+			ADM_AGAIN_PURPOSE as admAgainPurpose,
+			ADM_FORMER_COMA_DAY as admFormerComaDay,
+			ADM_FORMER_COMA_HOUR as admFormerComaHour,
+			ADM_FORMER_COMA_MIN as admFormerComaMin,
+			ADM_AFTER_COMA_DAY as admAfterComaDay,
+			ADM_AFTER_COMA_HOUR as admAfterComaHour,
+			ADM_AFTER_COMA_MIN as admAfterComaMin,
+			CLINIC_PATH_SIGN as clinicPathSign,
+			VARIATION_SIGN as variationSign,
+			CURRENT_STATUS as currentStatus,
+			RECORD_PERSON as recordPerson,
+			to_char(RECORD_DATE,'yyyy-mm-dd hh24:mi:ss') as recordDate,
+			MODIFY_PERSON as modifyPerson,
+			to_char(MODIFY_DATE,'yyyy-mm-dd hh24:mi:ss') as modifyDate
+		FROM MSS_INDEX_BASIC
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_ID between #{startDate} and  #{endDate} ]]>
+			</if>
+			<if test="endNum != null and endNum != 0">
+				<![CDATA[ AND ROWNUM <= #{endNum} ]]>
+			</if>
+		</where>
+		)  table_alias
+		<where>
+			<if test="startNum != null and startNum != 0">
+				<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+			</if>
+		</where>
+    </select>  
+</mapper>  

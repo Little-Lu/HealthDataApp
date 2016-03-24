@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joye.health.dao.baseinfo.IHealthOfficerDao">  
+    <resultMap type="com.joye.health.model.baseinfo.HealthOfficer" id="HealthOfficer">
+	</resultMap>
+	
+	<select id="queryHealthOfficerCount" resultType="int">
+    <![CDATA[ 
+		SELECT
+			count(1)
+		FROM REG_HEALTH_OFFICER_INFO
+    ]]> 
+    </select>
+	
+    <select id="queryHealthOfficer" resultMap="HealthOfficer" parameterType="com.joye.health.model.common.PageParam">
+    select 
+      *
+    from
+    (select
+      ROWNUM as rowno,
+	  AUTO_ID as autoId,
+	  UNITS_CODE as unitsCode,
+	  PERSON_NAME as personName,
+	  SEX as sex,
+	  to_char(DATE_OF_BIRTH,'yyyy-mm-dd') as dateOfBirth,
+	  ID_NO as idNo,
+	  NATION as nation,
+	  BIRTH_PLACE as birthPlace,
+	  BIRTH_PLACE_NAME as birthPlaceName,
+	  MARITAL_STATE as maritalState,
+	  BLOOD_CODE as bloodCode,
+	  HOME_ADDRESS as homeAddress,
+	  ZIP_CODE as zipCode,
+	  MOBILE_PHONE as mobilePhone,
+	  HOME_PHONE as homePhone,
+	  E_MAIL as eMail,
+	  GRADUATION_ACADEMY as graduationAcademy,
+	  to_char(GRADUATION_DATE,'yyyy-mm-dd') as graduationDate,
+	  PROFESSION as profession,
+	  HIGHEST_DEGREE as highestDegree,
+	  HIGHEST_OFFERING as highestOffering,
+	  POLITICAL_PARTY as politicalParty,
+	  DEPT_CODE as deptCode,
+	  SUB_DEPT_CODE as subDeptCode,
+	  OFFICE_PHONE as officePhone,
+	  OFFICE_FAX as officeFax,
+	  TECHNICAL_POST_LEVEL as technicalPostLevel,
+	  HEALTH_TYPE as healthType,
+	  TECHNICAL_POST_CODE as technicalPostCode,
+	  TECHNICAL_POST as technicalPost,
+	  DUTY_LEVEL_NAME as dutyLevelName,
+	  OCCUPATION as occupation,
+	  to_char(SERVICE_DATE,'yyyy-mm-dd') as serviceDate,
+	  to_char(ARRIVE_SERICE_DATE,'yyyy-mm-dd') as arriveSericeDate,
+	  PERSON_CODE as personCode,
+	  DN_SIGN as dnSign,
+	  APPOINT_SIGN as appointSign,
+	  USER_CODE as userCode,
+	  CURRENT_STATUS as currentStatus,
+	  PHO_INPUT_CODE as phoInputCode,
+	  FIVE_INPUT_CODE as fiveInputCode,
+	  REMARK as remark,
+	  MODIFY_PERSON as modifyPerson,
+	  to_char(MODIFY_DATE,'yyyy-mm-dd hh24:mi:ss') as modifyDate
+	FROM REG_HEALTH_OFFICER_INFO 
+	<where>
+		<if test="endNum != null and endNum != 0">
+			<![CDATA[ ROWNUM <= #{endNum} ]]>
+		</if>
+	</where>
+	) table_alias
+	<where>
+		<if test="startNum != null and startNum != 0">
+			<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+		</if>
+	</where>
+    </select>  
+</mapper>  

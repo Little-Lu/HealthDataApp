@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventEndReportDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventEndReport" id="HeEventEndReport">
+	</resultMap>
+    <select id="queryHeEventEndReport" resultMap="HeEventEndReport">
+    <![CDATA[ 
+		SELECT
+			RID as rid,
+			EVENT_NAME as eventName,
+			EVENT_PLACE as eventPlace,
+			to_char(BEGIN_DATE,'yyyy-mm-dd hh24:mi:ss') as beginDate,
+			to_char(END_DATE,'yyyy-mm-dd hh24:mi:ss') as endDate,
+			EVENT_SORT as eventSort,
+			GRADE as grade,
+			CAUSE as cause,
+			AFFECT_ZONE as affectZone,
+			AFFECT_EXTENT as affectExtent,
+			EXPENSE as expense,
+			RANGE_TOTAL as rangeTotal,
+			COMMUNITY_TOTAL as communityTotal,
+			ISOLATION_TOTAL as isolationTotal,
+			INFLUENCE_TOTAL as influenceTotal,
+			ILL_TOTAL as illTotal,
+			POISON_TOTAL as poisonTotal,
+			BURN_TOTAL as burnTotal,
+			HURT_TOTAL as hurtTotal,
+			HOSPITAL_TOTAL as hospitalTotal,
+			DEATH_TOTAL as deathTotal,
+			AFFECT_REMARK as affectRemark,
+			EXPERIENCE as experience,
+			REPORT_UNIT as reportUnit,
+			REPORT_UNITNAME as reportUnitname,
+			REPORT_IDCARD as reportIdcard,
+			REPORT_MAN as reportMan,
+			PHONE as phone,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate,
+			AUDIT_UNIT as auditUnit,
+			AUDIT_UNITNAME as auditUnitname,
+			AUDIT_IDCARD as auditIdcard,
+			AUDIT_NAME as auditName,
+			to_char(AUDIT_DATE,'yyyy-mm-dd hh24:mi:ss') as auditDate
+		FROM HE_EVENT_END_REPORT
+    ]]> 
+    </select>
+    
+    <insert id="insertHeEventEndReport" parameterType="com.joye.health.model.emergency.HeEventEndReport" >
+         insert into HE_EVENT_END_REPORT (RID,EVENT_NAME,EVENT_PLACE,BEGIN_DATE,END_DATE,EVENT_SORT,GRADE,CAUSE,AFFECT_ZONE,AFFECT_EXTENT,EXPENSE,RANGE_TOTAL,COMMUNITY_TOTAL,ISOLATION_TOTAL,INFLUENCE_TOTAL,ILL_TOTAL,POISON_TOTAL,BURN_TOTAL,HURT_TOTAL,HOSPITAL_TOTAL,DEATH_TOTAL,AFFECT_REMARK,EXPERIENCE,REPORT_UNIT,REPORT_UNITNAME,REPORT_IDCARD,REPORT_MAN,PHONE,INPUT_DATE,AUDIT_UNIT,AUDIT_UNITNAME,AUDIT_IDCARD,AUDIT_NAME,AUDIT_DATE) 
+         values 
+         (	#{rid, jdbcType=VARCHAR},
+			#{eventName, jdbcType=VARCHAR},
+			#{eventPlace, jdbcType=VARCHAR},
+			to_date(#{beginDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			to_date(#{endDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{eventSort, jdbcType=VARCHAR},
+			#{grade, jdbcType=VARCHAR},
+			#{cause, jdbcType=VARCHAR},
+			#{affectZone, jdbcType=VARCHAR},
+			#{affectExtent, jdbcType=VARCHAR},
+			#{expense, jdbcType=VARCHAR},
+			#{rangeTotal, jdbcType=VARCHAR},
+			#{communityTotal, jdbcType=VARCHAR},
+			#{isolationTotal, jdbcType=VARCHAR},
+			#{influenceTotal, jdbcType=VARCHAR},
+			#{illTotal, jdbcType=VARCHAR},
+			#{poisonTotal, jdbcType=VARCHAR},
+			#{burnTotal, jdbcType=VARCHAR},
+			#{hurtTotal, jdbcType=VARCHAR},
+			#{hospitalTotal, jdbcType=VARCHAR},
+			#{deathTotal, jdbcType=VARCHAR},
+			#{affectRemark, jdbcType=VARCHAR},
+			#{experience, jdbcType=VARCHAR},
+			#{reportUnit, jdbcType=VARCHAR},
+			#{reportUnitname, jdbcType=VARCHAR},
+			#{reportIdcard, jdbcType=VARCHAR},
+			#{reportMan, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{auditUnit, jdbcType=VARCHAR},
+			#{auditUnitname, jdbcType=VARCHAR},
+			#{auditIdcard, jdbcType=VARCHAR},
+			#{auditName, jdbcType=VARCHAR},
+			to_date(#{auditDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeEventEndReport" parameterType="com.joye.health.model.emergency.HeEventEndReport" >
+         update  HE_EVENT_END_REPORT 
+         <set>
+			<if test= "eventName != null">EVENT_NAME=#{eventName},</if >
+			<if test= "eventPlace != null">EVENT_PLACE=#{eventPlace},</if >
+			<if test= "beginDate != null">BEGIN_DATE=#{beginDate},</if >
+			<if test= "endDate != null">END_DATE=#{endDate},</if >
+			<if test= "eventSort != null">EVENT_SORT=#{eventSort},</if >
+			<if test= "grade != null">GRADE=#{grade},</if >
+			<if test= "cause != null">CAUSE=#{cause},</if >
+			<if test= "affectZone != null">AFFECT_ZONE=#{affectZone},</if >
+			<if test= "affectExtent != null">AFFECT_EXTENT=#{affectExtent},</if >
+			<if test= "expense != null">EXPENSE=#{expense},</if >
+			<if test= "rangeTotal != null">RANGE_TOTAL=#{rangeTotal},</if >
+			<if test= "communityTotal != null">COMMUNITY_TOTAL=#{communityTotal},</if >
+			<if test= "isolationTotal != null">ISOLATION_TOTAL=#{isolationTotal},</if >
+			<if test= "influenceTotal != null">INFLUENCE_TOTAL=#{influenceTotal},</if >
+			<if test= "illTotal != null">ILL_TOTAL=#{illTotal},</if >
+			<if test= "poisonTotal != null">POISON_TOTAL=#{poisonTotal},</if >
+			<if test= "burnTotal != null">BURN_TOTAL=#{burnTotal},</if >
+			<if test= "hurtTotal != null">HURT_TOTAL=#{hurtTotal},</if >
+			<if test= "hospitalTotal != null">HOSPITAL_TOTAL=#{hospitalTotal},</if >
+			<if test= "deathTotal != null">DEATH_TOTAL=#{deathTotal},</if >
+			<if test= "affectRemark != null">AFFECT_REMARK=#{affectRemark},</if >
+			<if test= "experience != null">EXPERIENCE=#{experience},</if >
+			<if test= "reportUnit != null">REPORT_UNIT=#{reportUnit},</if >
+			<if test= "reportUnitname != null">REPORT_UNITNAME=#{reportUnitname},</if >
+			<if test= "reportIdcard != null">REPORT_IDCARD=#{reportIdcard},</if >
+			<if test= "reportMan != null">REPORT_MAN=#{reportMan},</if >
+			<if test= "phone != null">PHONE=#{phone},</if >
+			<if test= "inputDate != null">INPUT_DATE=#{inputDate},</if >
+			<if test= "auditUnit != null">AUDIT_UNIT=#{auditUnit},</if >
+			<if test= "auditUnitname != null">AUDIT_UNITNAME=#{auditUnitname},</if >
+			<if test= "auditIdcard != null">AUDIT_IDCARD=#{auditIdcard},</if >
+			<if test= "auditName != null">AUDIT_NAME=#{auditName},</if >
+			<if test= "auditDate != null">AUDIT_DATE=#{auditDate}</if >
+         </set>
+         WHERE RID = #{rid}
+    </update >
+    
+    <delete id="deleteHeEventEndReport" parameterType="String">
+		DELETE FROM HE_EVENT_LOCALE_PICTURE WHERE RID = #{value}
+	</delete>
+</mapper>  

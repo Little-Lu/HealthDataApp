@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.ICvEventClassDictDao">  
+    <resultMap type="com.joye.health.model.emergency.CvEventClassDict" id="CvEventClassDict">
+	</resultMap>
+    <select id="queryCvEventClassDict" resultMap="CvEventClassDict">
+    <![CDATA[ 
+		SELECT
+			CLASS_CODE as classCode,
+			CLASS_NAME as className,
+			SERIAL_NO as serialNo,
+			PHO_INPUT_CODE as phoInputCode,
+			FIVE_INPUT_CODE as fiveInputCode,
+			CODE_LEVEL as codeLevel,
+			PARENT_CODE as parentCode,
+			END_SIGN as endSign
+		FROM CV_EVENT_CLASS_DICT
+    ]]> 
+    </select>  
+</mapper>  

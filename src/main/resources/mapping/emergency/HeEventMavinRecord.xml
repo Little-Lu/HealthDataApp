@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventMavinRecordDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventMavinRecord" id="HeEventMavinRecord">
+	</resultMap>
+    <select id="queryHeEventMavinRecord" resultMap="HeEventMavinRecord">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			AREA_CODE as areaCode,
+			ID_NO as idNo,
+			MAVIN_NAME as mavinName,
+			SEX as sex,
+			to_char(DATE_OF_BIRTH,'yyyy-mm-dd') as dateOfBirth,
+			DUTY_LEVEL as dutyLevel,
+			DUTY_NAME as dutyName,
+			TECHNICAL_POST_LEVEL as technicalPostLevel,
+			TECHNICAL_POST_NAME as technicalPostName,
+			NATION as nation,
+			POLITY_VISAGE as polityVisage,
+			WORK_UNIT_NAME as workUnitName,
+			WORK_UNIT_ADDRESS as workUnitAddress,
+			WORK_UNIT_CODE as workUnitCode,
+			PHONE as phone,
+			OFFICE_PHONE as officePhone,
+			WORK_FAX as workFax,
+			E_MAIL as eMail,
+			HOME_ADDRESS as homeAddress,
+			ZIP_CODE as zipCode,
+			HOUSE_PHONE as housePhone,
+			HEIGHT as height,
+			WEIGHT as weight,
+			Drug_allergy as drugAllergy,
+			HEALTH_STATUS as healthStatus,
+			MARITAL_STATE as maritalState,
+			GRADUATE as graduate,
+			SPECIALTY as specialty,
+			to_char(GRADUATE_DATE,'yyyy-mm-dd') as graduateDate,
+			FOREIGN_LANGUAGE as foreignLanguage,
+			MASTER_DEGREE as masterDegree,
+			CULTURE_DEGREE as cultureDegree,
+			MAVIN_TYPE as mavinType,
+			EVENT_TYPE as eventType,
+			SPECIALTY_SUMMARIZE as specialtySummarize,
+			MAVIN_LEVEL as mavinLevel,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_EVENT_MAVIN_RECORD
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeEventMavinRecord" parameterType="com.joye.health.model.emergency.HeEventMavinRecord" >
+         insert into HE_EVENT_MAVIN_RECORD (AUTO_ID,AREA_CODE,ID_NO,MAVIN_NAME,SEX,DATE_OF_BIRTH,DUTY_LEVEL,DUTY_NAME,TECHNICAL_POST_LEVEL,TECHNICAL_POST_NAME,NATION,POLITY_VISAGE,WORK_UNIT_NAME,WORK_UNIT_ADDRESS,WORK_UNIT_CODE,PHONE,OFFICE_PHONE,WORK_FAX,E_MAIL,HOME_ADDRESS,ZIP_CODE,HOUSE_PHONE,HEIGHT,WEIGHT,Drug_allergy,HEALTH_STATUS,MARITAL_STATE,GRADUATE,SPECIALTY,GRADUATE_DATE,FOREIGN_LANGUAGE,MASTER_DEGREE,CULTURE_DEGREE,MAVIN_TYPE,EVENT_TYPE,SPECIALTY_SUMMARIZE,MAVIN_LEVEL,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_EVENT_MAVIN_RECORD.nextval,
+			#{areaCode, jdbcType=VARCHAR},
+			#{idNo, jdbcType=VARCHAR},
+			#{mavinName, jdbcType=VARCHAR},
+			#{sex, jdbcType=VARCHAR},
+			to_date(#{dateOfBirth, jdbcType=VARCHAR},'yyyy-mm-dd'),
+			#{dutyLevel, jdbcType=VARCHAR},
+			#{dutyName, jdbcType=VARCHAR},
+			#{technicalPostLevel, jdbcType=VARCHAR},
+			#{technicalPostName, jdbcType=VARCHAR},
+			#{nation, jdbcType=VARCHAR},
+			#{polityVisage, jdbcType=VARCHAR},
+			#{workUnitName, jdbcType=VARCHAR},
+			#{workUnitAddress, jdbcType=VARCHAR},
+			#{workUnitCode, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			#{officePhone, jdbcType=VARCHAR},
+			#{workFax, jdbcType=VARCHAR},
+			#{eMail, jdbcType=VARCHAR},
+			#{homeAddress, jdbcType=VARCHAR},
+			#{zipCode, jdbcType=VARCHAR},
+			#{housePhone, jdbcType=VARCHAR},
+			#{height, jdbcType=VARCHAR},
+			#{weight, jdbcType=VARCHAR},
+			#{drugAllergy, jdbcType=VARCHAR},
+			#{healthStatus, jdbcType=VARCHAR},
+			#{maritalState, jdbcType=VARCHAR},
+			to_date(#{graduate, jdbcType=VARCHAR},'yyyy-mm-dd'),
+			#{specialty, jdbcType=VARCHAR},
+			#{graduateDate, jdbcType=VARCHAR},
+			#{foreignLanguage, jdbcType=VARCHAR},
+			#{masterDegree, jdbcType=VARCHAR},
+			#{cultureDegree, jdbcType=VARCHAR},
+			#{mavinType, jdbcType=VARCHAR},
+			#{eventType, jdbcType=VARCHAR},
+			#{specialtySummarize, jdbcType=VARCHAR},
+			#{mavinLevel, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeEventMavinRecord" parameterType="com.joye.health.model.emergency.HeEventMavinRecord" >
+         update  HE_EVENT_MAVIN_RECORD 
+         <set>
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "idNo != null">ID_NO=#{idNo},</if >
+			<if test= "mavinName != null">MAVIN_NAME=#{mavinName},</if >
+			<if test= "sex != null">SEX=#{sex},</if >
+			<if test= "dateOfBirth != null">DATE_OF_BIRTH=to_date(#{dateOfBirth},'yyyy-mm-dd'),</if >
+			<if test= "dutyLevel != null">DUTY_LEVEL=#{dutyLevel},</if >
+			<if test= "dutyName != null">DUTY_NAME=#{dutyName},</if >
+			<if test= "technicalPostLevel != null">TECHNICAL_POST_LEVEL=#{technicalPostLevel},</if >
+			<if test= "technicalPostName != null">TECHNICAL_POST_NAME=#{technicalPostName},</if >
+			<if test= "nation != null">NATION=#{nation},</if >
+			<if test= "polityVisage != null">POLITY_VISAGE=#{polityVisage},</if >
+			<if test= "workUnitName != null">WORK_UNIT_NAME=#{workUnitName},</if >
+			<if test= "workUnitAddress != null">WORK_UNIT_ADDRESS=#{workUnitAddress},</if >
+			<if test= "workUnitCode != null">WORK_UNIT_CODE=#{workUnitCode},</if >
+			<if test= "phone != null">PHONE=#{phone},</if >
+			<if test= "officePhone != null">OFFICE_PHONE=#{officePhone},</if >
+			<if test= "workFax != null">WORK_FAX=#{workFax},</if >
+			<if test= "eMail != null">E_MAIL=#{eMail},</if >
+			<if test= "homeAddress != null">HOME_ADDRESS=#{homeAddress},</if >
+			<if test= "zipCode != null">ZIP_CODE=#{zipCode},</if >
+			<if test= "housePhone != null">HOUSE_PHONE=#{housePhone},</if >
+			<if test= "height != null">HEIGHT=#{height},</if >
+			<if test= "weight != null">WEIGHT=#{weight},</if >
+			<if test= "drugAllergy != null">Drug_allergy=#{drugAllergy},</if >
+			<if test= "healthStatus != null">HEALTH_STATUS=#{healthStatus},</if >
+			<if test= "maritalState != null">MARITAL_STATE=#{maritalState},</if >
+			<if test= "graduate != null">GRADUATE=#{graduate},</if >
+			<if test= "specialty != null">SPECIALTY=#{specialty},</if >
+			<if test= "graduateDate != null">GRADUATE_DATE=to_date(#{graduateDate},'yyyy-mm-dd'),</if >
+			<if test= "foreignLanguage != null">FOREIGN_LANGUAGE=#{foreignLanguage},</if >
+			<if test= "masterDegree != null">MASTER_DEGREE=#{masterDegree},</if >
+			<if test= "cultureDegree != null">CULTURE_DEGREE=#{cultureDegree},</if >
+			<if test= "mavinType != null">MAVIN_TYPE=#{mavinType},</if >
+			<if test= "eventType != null">EVENT_TYPE=#{eventType},</if >
+			<if test= "specialtySummarize != null">SPECIALTY_SUMMARIZE=#{specialtySummarize},</if >
+			<if test= "mavinLevel != null">MAVIN_LEVEL=#{mavinLevel},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeEventMavinRecord" parameterType="String">
+		DELETE FROM HE_EVENT_MAVIN_RECORD WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

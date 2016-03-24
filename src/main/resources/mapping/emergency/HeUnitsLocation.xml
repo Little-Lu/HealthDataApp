@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeUnitsLocationDao">  
+    <resultMap type="com.joye.health.model.emergency.HeUnitsLocation" id="HeUnitsLocation">
+	</resultMap>
+    <select id="queryHeUnitsLocation" resultMap="HeUnitsLocation">
+    <![CDATA[ 
+		SELECT
+			UNITS_CODE as unitsCode,
+			UNITS_NAME as unitsName,
+			ICON_TYPE as iconType,
+			LNG as lng,
+			LAT as lat
+		FROM HE_UNITS_LOCATION
+    ]]> 
+    </select>
+      
+    <insert id="insertHeUnitsLocation" parameterType="com.joye.health.model.emergency.HeUnitsLocation" >
+         insert into HE_UNITS_LOCATION (UNITS_CODE,UNITS_NAME,ICON_TYPE,LNG,LAT) 
+         values 
+         (#{unitsCode, jdbcType=VARCHAR},#{unitsName, jdbcType=VARCHAR},#{iconType, jdbcType=VARCHAR},#{lng, jdbcType=VARCHAR},#{lat, jdbcType=VARCHAR})
+    </insert >
+    
+    <update id="updateHeUnitsLocation" parameterType="com.joye.health.model.emergency.HeUnitsLocation" >
+         update  HE_UNITS_LOCATION 
+         <set>
+              <if test= "unitsName != null">UNITS_CODE=#{unitsName},</if >
+              <if test= "iconType != null">UNITS_CODE=#{iconType},</if >
+              <if test= "lng != null">UNITS_CODE=#{lng},</if >
+              <if test= "lat != null">UNITS_CODE=#{lat}</if >
+         </set>
+         WHERE UNITS_CODE = #{unitsCode}
+    </update >
+    
+    <delete id="deleteHeUnitsLocation" parameterType="String">
+		DELETE FROM HE_UNITS_LOCATION WHERE UNITS_CODE = #{value}
+	</delete>
+    
+</mapper>  

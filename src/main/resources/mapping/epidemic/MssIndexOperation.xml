@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.epidemic.IMssIndexOperationDao">  
+    <resultMap type="com.joye.health.model.epidemic.MssIndexOperation" id="MssIndexOperation">
+	</resultMap>
+	<select id="queryMssIndexOperationCount" resultType="int"  parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+			count(1)
+		FROM MSS_INDEX_OPERATION
+		<where>
+			<if test="startDate != null and endDate != null">
+				<![CDATA[ AUTO_ID between #{startDate} and  #{endDate}]]>
+			</if>
+		</where>
+    </select>
+	
+    <select id="queryMssIndexOperation" resultMap="MssIndexOperation" parameterType="com.joye.health.model.common.PageParam">
+		SELECT
+	      *
+	    FROM
+		(SELECT
+				ROWNUM as rowno,
+				AUTO_ID as autoId,
+				SERIAL_NO as serialNo,
+				OPERATION_CODE as operationCode,
+				OPERATION_NAME as operationName,
+				to_char(OPERATION_DATE,'yyyy-mm-dd hh24:mi:ss') as operationDate,
+				OPERATION_LEVEL as operationLevel,
+				OPERATION_DOCTOR as operationDoctor,
+				FIRST_ASSISTANT as firstAssistant,
+				SECOND_ASSISTANT as secondAssistant,
+				WOUND_GRADE as woundGrade,
+				WOUND_HEALING as woundHealing,
+				ANAESTHESIA_METHOD_CODE as anaesthesiaMethodCode,
+				ANAESTHESIA_METHOD as anaesthesiaMethod,
+				ANESTHESIA_DOCTOR as anesthesiaDoctor
+			FROM MSS_INDEX_OPERATION
+			<where>
+				<if test="startDate != null and endDate != null">
+					<![CDATA[ AUTO_ID between #{startDate} and  #{endDate}]]>
+				</if>
+				<if test="endNum != null and endNum != 0">
+					<![CDATA[ AND ROWNUM <= #{endNum} ]]>
+				</if>
+			</where>
+		)  table_alias
+		<where>
+			<if test="startNum != null and startNum != 0">
+				<![CDATA[ table_alias.rowno >= #{startNum} ]]>
+			</if>
+		</where>
+    </select>  
+</mapper>  

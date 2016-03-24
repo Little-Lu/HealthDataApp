@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventContingencyRecordDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventContingencyRecord" id="HeEventContingencyRecord">
+	</resultMap>
+    <select id="queryHeEventContingencyRecord" resultMap="HeEventContingencyRecord">
+    <![CDATA[ 
+		SELECT
+			SERIAL_NO as serialNo,
+			AREA_CODE as areaCode,
+			PREPLAN_NAME as preplanName,
+			FILE_NAME1 as fileName1,
+			FILE_NAME2 as fileName2,
+			EVENT_CLASS as eventClass,
+			INSTITUTE_PLAN as institutePlan,
+			INSTITUTE_PLAN_NAME as institutePlanName,
+			to_char(BEGIN_DATE,'yyyy-mm-dd hh24:mi:ss') as beginDate,
+			to_char(ISSUE_DATE,'yyyy-mm-dd hh24:mi:ss') as issueDate,
+			PLAN_BASIS as planBasis,
+			APPLY_AREA as applyArea,
+			PLAN_TENET as planTenet,
+			OUTSIZE_SYSTEMT as outsizeSystemt,
+			BIGNESS_SYSTEMT as bignessSystemt,
+			BIG_SYSTEM as bigSystem,
+			COMMONLY_SYSTEMT as commonlySystemt,
+			OUTSIZE_DIVIDE as outsizeDivide,
+			BIGNESS_DIVIDE as bignessDivide,
+			BIG_DIVIDE as bigDivide,
+			COMMONLY_DIVIDE as commonlyDivide,
+			SAFE_MEASURE as safeMeasure,
+			REPORT as report,
+			REACTION as reaction,
+			DISPOSE as dispose,
+			PREVENT as prevent,
+			OUTSIZE_STRIKE as outsizeStrike,
+			BIGNESS_STRIKE as bignessStrike,
+			BIG_SYSTEM_STRIKE as bigSystemStrike,
+			COMMONLY_STRIKE as commonlyStrike,
+			DISASTER as disaster,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_EVENT_CONTINGENCY_RECORD
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeEventContingencyRecord" parameterType="com.joye.health.model.emergency.HeEventContingencyRecord" >
+         insert into HE_EVENT_CONTINGENCY_RECORD (SERIAL_NO,AREA_CODE,PREPLAN_NAME,FILE_NAME1,FILE_NAME2,EVENT_CLASS,INSTITUTE_PLAN,INSTITUTE_PLAN_NAME,BEGIN_DATE,ISSUE_DATE,PLAN_BASIS,APPLY_AREA,PLAN_TENET,OUTSIZE_SYSTEMT,BIGNESS_SYSTEMT,BIG_SYSTEM,COMMONLY_SYSTEMT,OUTSIZE_DIVIDE,BIGNESS_DIVIDE,BIG_DIVIDE,COMMONLY_DIVIDE,SAFE_MEASURE,REPORT,REACTION,DISPOSE,PREVENT,OUTSIZE_STRIKE,BIGNESS_STRIKE,BIG_SYSTEM_STRIKE,COMMONLY_STRIKE,DISASTER,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_EVENT_CONTINGENCY_RECORD.nextval,
+			#{areaCode, jdbcType=VARCHAR},
+			#{preplanName, jdbcType=VARCHAR},
+			#{fileName1, jdbcType=VARCHAR},
+			#{fileName2, jdbcType=VARCHAR},
+			#{eventClass, jdbcType=VARCHAR},
+			#{institutePlan, jdbcType=VARCHAR},
+			#{institutePlanName, jdbcType=VARCHAR},
+			to_date(#{beginDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			to_date(#{issueDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{planBasis, jdbcType=VARCHAR},
+			#{applyArea, jdbcType=VARCHAR},
+			#{planTenet, jdbcType=VARCHAR},
+			#{outsizeSystemt, jdbcType=VARCHAR},
+			#{bignessSystemt, jdbcType=VARCHAR},
+			#{bigSystem, jdbcType=VARCHAR},
+			#{commonlySystemt, jdbcType=VARCHAR},
+			#{outsizeDivide, jdbcType=VARCHAR},
+			#{bignessDivide, jdbcType=VARCHAR},
+			#{bigDivide, jdbcType=VARCHAR},
+			#{commonlyDivide, jdbcType=VARCHAR},
+			#{safeMeasure, jdbcType=VARCHAR},
+			#{report, jdbcType=VARCHAR},
+			#{reaction, jdbcType=VARCHAR},
+			#{dispose, jdbcType=VARCHAR},
+			#{prevent, jdbcType=VARCHAR},
+			#{outsizeStrike, jdbcType=VARCHAR},
+			#{bignessStrike, jdbcType=VARCHAR},
+			#{bigSystemStrike, jdbcType=VARCHAR},
+			#{commonlyStrike, jdbcType=VARCHAR},
+			#{disaster, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeEventContingencyRecord" parameterType="com.joye.health.model.emergency.HeEventContingencyRecord" >
+         update  HE_EVENT_CONTINGENCY_RECORD 
+         <set>
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "preplanName != null">PREPLAN_NAME=#{preplanName},</if >
+			<if test= "fileName1 != null">FILE_NAME1=#{fileName1},</if >
+			<if test= "fileName2 != null">FILE_NAME2=#{fileName2},</if >
+			<if test= "eventClass != null">EVENT_CLASS=#{eventClass},</if >
+			<if test= "institutePlan != null">INSTITUTE_PLAN=#{institutePlan},</if >
+			<if test= "institutePlanName != null">INSTITUTE_PLAN_NAME=#{institutePlanName},</if >
+			<if test= "beginDate != null">BEGIN_DATE=to_date(#{beginDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+			<if test= "issueDate != null">ISSUE_DATE=to_date(#{issueDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+			<if test= "planBasis != null">PLAN_BASIS=#{planBasis},</if >
+			<if test= "applyArea != null">APPLY_AREA=#{applyArea},</if >
+			<if test= "planTenet != null">PLAN_TENET=#{planTenet},</if >
+			<if test= "outsizeSystemt != null">OUTSIZE_SYSTEMT=#{outsizeSystemt},</if >
+			<if test= "bignessSystemt != null">BIGNESS_SYSTEMT=#{bignessSystemt},</if >
+			<if test= "bigSystem != null">BIG_SYSTEM=#{bigSystem},</if >
+			<if test= "commonlySystemt != null">COMMONLY_SYSTEMT=#{commonlySystemt},</if >
+			<if test= "outsizeDivide != null">OUTSIZE_DIVIDE=#{outsizeDivide},</if >
+			<if test= "bignessDivide != null">BIGNESS_DIVIDE=#{bignessDivide},</if >
+			<if test= "bigDivide != null">BIG_DIVIDE=#{bigDivide},</if >
+			<if test= "commonlyDivide != null">COMMONLY_DIVIDE=#{commonlyDivide},</if >
+			<if test= "safeMeasure != null">SAFE_MEASURE=#{safeMeasure},</if >
+			<if test= "report != null">REPORT=#{report},</if >
+			<if test= "reaction != null">REACTION=#{reaction},</if >
+			<if test= "dispose != null">DISPOSE=#{dispose},</if >
+			<if test= "prevent != null">PREVENT=#{prevent},</if >
+			<if test= "outsizeStrike != null">OUTSIZE_STRIKE=#{outsizeStrike},</if >
+			<if test= "bignessStrike != null">BIGNESS_STRIKE=#{bignessStrike},</if >
+			<if test= "bigSystemStrike != null">BIG_SYSTEM_STRIKE=#{bigSystemStrike},</if >
+			<if test= "commonlyStrike != null">COMMONLY_STRIKE=#{commonlyStrike},</if >
+			<if test= "disaster != null">DISASTER=#{disaster},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE SERIAL_NO = #{serialNo}
+    </update >
+    
+    <delete id="deleteHeEventContingencyRecord" parameterType="String">
+		DELETE FROM HE_EVENT_CONTINGENCY_RECORD WHERE SERIAL_NO = #{value}
+	</delete>
+</mapper>  

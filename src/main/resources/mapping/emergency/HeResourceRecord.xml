@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeResourceRecordDao">  
+    <resultMap type="com.joye.health.model.emergency.HeResourceRecord" id="HeResourceRecord">
+	</resultMap>
+    <select id="queryHeResourceRecord" resultMap="HeResourceRecord">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			AREA_CODE as areaCode,
+			RESOURCE_TYPE as resourceType,
+			RESOURCE_NAME as resourceName,
+			SPEC as spec,
+			UNITS as units,
+			NUM as num,
+			LOCATION as location,
+			STATUS as status,
+			INPUT_UNIT as inputUnit,
+			INPUT_UNITNAME as inputUnitname,
+			INPUT_IDCARD as inputIdcard,
+			INPUT_NAME as inputName,
+			to_char(INPUT_DATE,'yyyy-mm-dd hh24:mi:ss') as inputDate
+		FROM HE_RESOURCE_RECORD
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeResourceRecord" parameterType="com.joye.health.model.emergency.HeResourceRecord" >
+         insert into HE_RESOURCE_RECORD (AUTO_ID,AREA_CODE,RESOURCE_TYPE,RESOURCE_NAME,SPEC,UNITS,NUM,LOCATION,STATUS,INPUT_UNIT,INPUT_UNITNAME,INPUT_IDCARD,INPUT_NAME,INPUT_DATE) 
+         values 
+         (	SEQ_HE_RESOURCE_RECORD.nextval,
+			#{areaCode, jdbcType=VARCHAR},
+			#{resourceType, jdbcType=VARCHAR},
+			#{resourceName, jdbcType=VARCHAR},
+			#{spec, jdbcType=VARCHAR},
+			#{units, jdbcType=VARCHAR},
+			#{num, jdbcType=VARCHAR},
+			#{location, jdbcType=VARCHAR},
+			#{status, jdbcType=VARCHAR},
+			#{inputUnit, jdbcType=VARCHAR},
+			#{inputUnitname, jdbcType=VARCHAR},
+			#{inputIdcard, jdbcType=VARCHAR},
+			#{inputName, jdbcType=VARCHAR},
+			to_date(#{inputDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeResourceRecord" parameterType="com.joye.health.model.emergency.HeResourceRecord" >
+         update  HE_RESOURCE_RECORD 
+         <set>
+			<if test= "areaCode != null">AREA_CODE=#{areaCode},</if >
+			<if test= "resourceType != null">RESOURCE_TYPE=#{resourceType},</if >
+			<if test= "resourceName != null">RESOURCE_NAME=#{resourceName},</if >
+			<if test= "spec != null">SPEC=#{spec},</if >
+			<if test= "units != null">UNITS=#{units},</if >
+			<if test= "num != null">NUM=#{num},</if >
+			<if test= "location != null">LOCATION=#{location},</if >
+			<if test= "status != null">STATUS=#{status},</if >
+			<if test= "inputUnit != null">INPUT_UNIT=#{inputUnit},</if >
+			<if test= "inputUnitname != null">INPUT_UNITNAME=#{inputUnitname},</if >
+			<if test= "inputIdcard != null">INPUT_IDCARD=#{inputIdcard},</if >
+			<if test= "inputName != null">INPUT_NAME=#{inputName},</if >
+			<if test= "inputDate != null">INPUT_DATE=to_date(#{inputDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeResourceRecord" parameterType="String">
+		DELETE FROM HE_RESOURCE_RECORD WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

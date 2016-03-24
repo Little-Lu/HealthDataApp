@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventPersonReportDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventPersonReport" id="HeEventPersonReport">
+	</resultMap>
+    <select id="queryHeEventPersonReport" resultMap="HeEventPersonReport">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			RID as rid,
+			PERSON_ID as personId,
+			PERSON_NAME as personName,
+			ID_NO as idNo,
+			SEX as sex,
+			to_char(DATE_OF_BIRTH,'yyyy-mm-dd') as dateOfBirth,
+			PHONE as phone,
+			NATION as nation,
+			CULTURE_DEGREE as cultureDegree,
+			OCCUPATION as occupation,
+			MARITAL_STATE as maritalState,
+			HOME_ADDRESS as homeAddress,
+			ZIP_CODE as zipCode,
+			HOME_PHONE as homePhone,
+			WORK_UNIT_NAME as workUnitName,
+			WORK_UNIT_ADDRESS as workUnitAddress,
+			WORK_UNIT_CODE as workUnitCode,
+			WORK_UNIT_PHONE as workUnitPhone,
+			CLASS_TYPE as classType,
+			to_char(HAPPEN_DATE,'yyyy-mm-dd hh24:mi:ss') as happenDate,
+			to_char(DEATH_DATE,'yyyy-mm-dd hh24:mi:ss') as deathDate,
+			EVOLVE as evolve,
+			DEAL as deal,
+			CURE as cure,
+			CONTACT_NAME as contactName,
+			CONTACT_PHONE as contactPhone,
+			REPORT_UNIT as reportUnit,
+			REPORT_UNITNAME as reportUnitname,
+			REPORT_IDCARD as reportIdcard,
+			REPORT_MAN as reportMan,
+			REPORT_PHONE as reportPhone,
+			to_char(REPORT_DATE,'yyyy-mm-dd hh24:mi:ss') as reportDate
+		FROM HE_EVENT_PERSON_REPORT
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeEventPersonReport" parameterType="com.joye.health.model.emergency.HeEventPersonReport" >
+         insert into HE_EVENT_PERSON_REPORT (AUTO_ID,RID,PERSON_ID,PERSON_NAME,ID_NO,SEX,DATE_OF_BIRTH,PHONE,NATION,CULTURE_DEGREE,OCCUPATION,MARITAL_STATE,HOME_ADDRESS,ZIP_CODE,HOME_PHONE,WORK_UNIT_NAME,WORK_UNIT_ADDRESS,WORK_UNIT_CODE,WORK_UNIT_PHONE,CLASS_TYPE,HAPPEN_DATE,DEATH_DATE,EVOLVE,DEAL,CURE,CONTACT_NAME,CONTACT_PHONE,REPORT_UNIT,REPORT_UNITNAME,REPORT_IDCARD,REPORT_MAN,REPORT_PHONE,REPORT_DATE) 
+         values 
+         (	SEQ_EVENT_PERSON_REPORT.nextval,
+			#{rid, jdbcType=VARCHAR},
+			#{personId, jdbcType=VARCHAR},
+			#{personName, jdbcType=VARCHAR},
+			#{idNo, jdbcType=VARCHAR},
+			#{sex, jdbcType=VARCHAR},
+			to_date(#{dateOfBirth, jdbcType=VARCHAR},'yyyy-mm-dd'),
+			#{phone, jdbcType=VARCHAR},
+			#{nation, jdbcType=VARCHAR},
+			#{cultureDegree, jdbcType=VARCHAR},
+			#{occupation, jdbcType=VARCHAR},
+			#{maritalState, jdbcType=VARCHAR},
+			#{homeAddress, jdbcType=VARCHAR},
+			#{zipCode, jdbcType=VARCHAR},
+			#{homePhone, jdbcType=VARCHAR},
+			#{workUnitName, jdbcType=VARCHAR},
+			#{workUnitAddress, jdbcType=VARCHAR},
+			#{workUnitCode, jdbcType=VARCHAR},
+			#{workUnitPhone, jdbcType=VARCHAR},
+			#{classType, jdbcType=VARCHAR},
+			to_date(#{happenDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			to_date(#{deathDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{evolve, jdbcType=VARCHAR},
+			#{deal, jdbcType=VARCHAR},
+			#{cure, jdbcType=VARCHAR},
+			#{contactName, jdbcType=VARCHAR},
+			#{contactPhone, jdbcType=VARCHAR},
+			#{reportUnit, jdbcType=VARCHAR},
+			#{reportUnitname, jdbcType=VARCHAR},
+			#{reportIdcard, jdbcType=VARCHAR},
+			#{reportMan, jdbcType=VARCHAR},
+			#{reportPhone, jdbcType=VARCHAR},
+			to_date(#{reportDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss') )
+    </insert >
+    
+    <update id="updateHeEventPersonReport" parameterType="com.joye.health.model.emergency.HeEventPersonReport" >
+         update  HE_EVENT_PERSON_REPORT 
+         <set>
+				<if test= "rid != null">RID=#{rid},</if >
+				<if test= "personId != null">PERSON_ID=#{personId},</if >
+				<if test= "personName != null">PERSON_NAME=#{personName},</if >
+				<if test= "idNo != null">ID_NO=#{idNo},</if >
+				<if test= "sex != null">SEX=#{sex},</if >
+				<if test= "dateOfBirth != null">DATE_OF_BIRTH=to_date(#{dateOfBirth}),'yyyy-mm-dd'),</if >
+				<if test= "phone != null">PHONE=#{phone},</if >
+				<if test= "nation != null">NATION=#{nation},</if >
+				<if test= "cultureDegree != null">CULTURE_DEGREE=#{cultureDegree},</if >
+				<if test= "occupation != null">OCCUPATION=#{occupation},</if >
+				<if test= "maritalState != null">MARITAL_STATE=#{maritalState},</if >
+				<if test= "homeAddress != null">HOME_ADDRESS=#{homeAddress},</if >
+				<if test= "zipCode != null">ZIP_CODE=#{zipCode},</if >
+				<if test= "homePhone != null">HOME_PHONE=#{homePhone},</if >
+				<if test= "workUnitName != null">WORK_UNIT_NAME=#{workUnitName},</if >
+				<if test= "workUnitAddress != null">WORK_UNIT_ADDRESS=#{workUnitAddress},</if >
+				<if test= "workUnitCode != null">WORK_UNIT_CODE=#{workUnitCode},</if >
+				<if test= "workUnitPhone != null">WORK_UNIT_PHONE=#{workUnitPhone},</if >
+				<if test= "classType != null">CLASS_TYPE=#{classType},</if >
+				<if test= "happenDate != null">HAPPEN_DATE=to_date(#{happenDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "deathDate != null">DEATH_DATE=to_date(#{deathDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "evolve != null">EVOLVE=#{evolve},</if >
+				<if test= "deal != null">DEAL=#{deal},</if >
+				<if test= "cure != null">CURE=#{cure},</if >
+				<if test= "contactName != null">CONTACT_NAME=#{contactName},</if >
+				<if test= "contactPhone != null">CONTACT_PHONE=#{contactPhone},</if >
+				<if test= "reportUnit != null">REPORT_UNIT=#{reportUnit},</if >
+				<if test= "reportUnitname != null">REPORT_UNITNAME=#{reportUnitname},</if >
+				<if test= "reportIdcard != null">REPORT_IDCARD=#{reportIdcard},</if >
+				<if test= "reportMan != null">REPORT_MAN=#{reportMan},</if >
+				<if test= "reportPhone != null">REPORT_PHONE=#{reportPhone},</if >
+				<if test= "reportDate != null">REPORT_DATE=to_date(#{reportDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeEventPersonReport" parameterType="String">
+		DELETE FROM HE_EVENT_PERSON_REPORT WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

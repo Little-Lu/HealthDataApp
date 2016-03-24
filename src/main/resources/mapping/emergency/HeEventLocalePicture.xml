@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventLocalePictureDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventLocalePicture" id="HeEventLocalePicture">
+	</resultMap>
+    <select id="queryHeEventLocalePicture" resultMap="HeEventLocalePicture">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			RID as rid,
+			PICTURE_ID as pictureId,
+			SERIAL_NO as serialNo,
+			PICTURE_NAME as pictureName,
+			PICTURE_TYPE as pictureType,
+			PICTURE_EXPLAIN as pictureExplain,
+			to_char(PICTURE_TIME,'yyyy-mm-dd hh24:mi:ss') as pictureTime,
+			REPORT_UNIT as reportUnit,
+			REPORT_UNITNAME as reportUnitname,
+			REPORT_IDCARD as reportIdcard,
+			REPORT_MAN as reportMan,
+			REPORT_PHONE as reportPhone,
+			to_char(REPORT_DATE,'yyyy-mm-dd hh24:mi:ss') as reportDate
+		FROM HE_EVENT_LOCALE_PICTURE
+    ]]> 
+    </select>  
+
+    <insert id="insertHeEventLocalePicture" parameterType="com.joye.health.model.emergency.HeEventLocalePicture" >
+         insert into HE_EVENT_LOCALE_PICTURE (AUTO_ID,RID,PICTURE_ID,SERIAL_NO,PICTURE_NAME,PICTURE_TYPE,PICTURE_EXPLAIN,PICTURE_TIME,REPORT_UNIT,REPORT_UNITNAME,REPORT_IDCARD,REPORT_MAN,REPORT_PHONE,REPORT_DATE) 
+         values 
+         (	SEQ_EVENT_LOCALE_PICTURE.nextval,
+			#{rid, jdbcType=VARCHAR},
+			#{pictureId, jdbcType=VARCHAR},
+			#{serialNo, jdbcType=VARCHAR},
+			#{pictureName, jdbcType=VARCHAR},
+			#{pictureType, jdbcType=VARCHAR},
+			#{pictureExplain, jdbcType=VARCHAR},
+			to_date(#{pictureTime, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{reportUnit, jdbcType=VARCHAR},
+			#{reportUnitname, jdbcType=VARCHAR},
+			#{reportIdcard, jdbcType=VARCHAR},
+			#{reportMan, jdbcType=VARCHAR},
+			#{reportPhone, jdbcType=VARCHAR},
+			to_date(#{reportDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss')
+         )
+    </insert >
+    
+    <update id="updateHeEventLocalePicture" parameterType="com.joye.health.model.emergency.HeEventLocalePicture" >
+         update  HE_EVENT_LOCALE_PICTURE 
+         <set>
+			<if test= "rid != null">RID=#{rid},</if >
+			<if test= "pictureId != null">PICTURE_ID=#{pictureId},</if >
+			<if test= "serialNo != null">SERIAL_NO=#{serialNo},</if >
+			<if test= "pictureName != null">PICTURE_NAME=#{pictureName},</if >
+			<if test= "pictureType != null">PICTURE_TYPE=#{pictureType},</if >
+			<if test= "pictureExplain != null">PICTURE_EXPLAIN=#{pictureExplain},</if >
+			<if test= "pictureTime != null">PICTURE_TIME=to_date(#{pictureTime},'yyyy-mm-dd hh24:mi:ss'),</if >
+			<if test= "reportUnit != null">REPORT_UNIT=#{reportUnit},</if >
+			<if test= "reportUnitname != null">REPORT_UNITNAME=#{reportUnitname},</if >
+			<if test= "reportIdcard != null">REPORT_IDCARD=#{reportIdcard},</if >
+			<if test= "reportMan != null">REPORT_MAN=#{reportMan},</if >
+			<if test= "reportPhone != null">REPORT_PHONE=#{reportPhone},</if >
+			<if test= "reportDate != null">REPORT_DATE=to_date(#{reportDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeEventLocalePicture" parameterType="String">
+		DELETE FROM HE_EVENT_LOCALE_PICTURE WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

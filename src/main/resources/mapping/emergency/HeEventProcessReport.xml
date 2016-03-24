@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.joye.health.dao.emergency.IHeEventProcessReportDao">  
+    <resultMap type="com.joye.health.model.emergency.HeEventProcessReport" id="HeEventProcessReport">
+	</resultMap>
+    <select id="queryHeEventProcessReport" resultMap="HeEventProcessReport">
+    <![CDATA[ 
+		SELECT
+			AUTO_ID as autoId,
+			RID as rid,
+			PRO_RID as proRid,
+			to_char(END_DATE,'yyyy-mm-dd hh24:mi:ss') as endDate,
+			RANGE_TOTAL as rangeTotal,
+			INFLUENCE_TOTAL as influenceTotal,
+			ISOLATION_TOTAL as isolationTotal,
+			COMMUNITY_TOTAL as communityTotal,
+			ILL_TOTAL as illTotal,
+			POISON_TOTAL as poisonTotal,
+			BURN_TOTAL as burnTotal,
+			HURT_TOTAL as hurtTotal,
+			HOSPITAL_TOTAL as hospitalTotal,
+			DEATH_TOTAL as deathTotal,
+			RANGE_NEW as rangeNew,
+			NEW_INFLUENCE_NUM as newInfluenceNum,
+			NEW_ISOLATION_NUM as newIsolationNum,
+			COMMUNITY_NEW as communityNew,
+			NEW_ILL_NUM as newIllNum,
+			POISON_NEW as poisonNew,
+			BURN_NEW as burnNew,
+			NEW_HURT_NUM as newHurtNum,
+			NEW_HOSPITAL_NUM as newHospitalNum,
+			NEW_DEATH_NUM as newDeathNum,
+			RANGE_EXCLUDE as rangeExclude,
+			INFLUENCE_EXCLUDE as influenceExclude,
+			ISOLATION_EXCLUDE as isolationExclude,
+			COMMUNITY_EXCLUDE as communityExclude,
+			ILL_EXCLUDE as illExclude,
+			POISON_EXCLUDE as poisonExclude,
+			BURN_EXCLUDE as burnExclude,
+			HURT_EXCLUDE as hurtExclude,
+			HOSPITAL_EXCLUDE as hospitalExclude,
+			DEATH_EXCLUDE as deathExclude,
+			EVOLVE as evolve,
+			DEAL as deal,
+			SUPPORT as support,
+			to_char(RECEIVE_DATE,'yyyy-mm-dd hh24:mi:ss') as receiveDate,
+			REPORT_UNIT as reportUnit,
+			REPORT_UNITNAME as reportUnitname,
+			REPORT_IDCARD as reportIdcard,
+			REPORT_MAN as reportMan,
+			PHONE as phone,
+			to_char(REPORT_DATE,'yyyy-mm-dd hh24:mi:ss') as reportDate,
+			AUDIT_UNIT as auditUnit,
+			AUDIT_UNITNAME as auditUnitname,
+			AUDIT_IDCARD as auditIdcard,
+			AUDIT_NAME as auditName,
+			to_char(AUDIT_DATE,'yyyy-mm-dd hh24:mi:ss') as auditDate
+		FROM HE_EVENT_PROCESS_REPORT
+    ]]> 
+    </select>  
+    
+    <insert id="insertHeEventProcessReport" parameterType="com.joye.health.model.emergency.HeEventProcessReport" >
+         insert into HE_EVENT_PROCESS_REPORT (AUTO_ID,RID,PRO_RID,END_DATE,RANGE_TOTAL,INFLUENCE_TOTAL,ISOLATION_TOTAL,COMMUNITY_TOTAL,ILL_TOTAL,POISON_TOTAL,BURN_TOTAL,HURT_TOTAL,HOSPITAL_TOTAL,DEATH_TOTAL,RANGE_NEW,NEW_INFLUENCE_NUM,NEW_ISOLATION_NUM,COMMUNITY_NEW,NEW_ILL_NUM,POISON_NEW,BURN_NEW,NEW_HURT_NUM,NEW_HOSPITAL_NUM,NEW_DEATH_NUM,RANGE_EXCLUDE,INFLUENCE_EXCLUDE,ISOLATION_EXCLUDE,COMMUNITY_EXCLUDE,ILL_EXCLUDE,POISON_EXCLUDE,BURN_EXCLUDE,HURT_EXCLUDE,HOSPITAL_EXCLUDE,DEATH_EXCLUDE,EVOLVE,DEAL,SUPPORT,RECEIVE_DATE,REPORT_UNIT,REPORT_UNITNAME,REPORT_IDCARD,REPORT_MAN,PHONE,REPORT_DATE,AUDIT_UNIT,AUDIT_UNITNAME,AUDIT_IDCARD,AUDIT_NAME,AUDIT_DATE) 
+         values 
+         (  SEQ_EVENT_PROCESS_REPORT.nextval,
+			#{rid, jdbcType=VARCHAR},
+			#{proRid, jdbcType=VARCHAR},
+			to_date(#{endDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{rangeTotal, jdbcType=VARCHAR},
+			#{influenceTotal, jdbcType=VARCHAR},
+			#{isolationTotal, jdbcType=VARCHAR},
+			#{communityTotal, jdbcType=VARCHAR},
+			#{illTotal, jdbcType=VARCHAR},
+			#{poisonTotal, jdbcType=VARCHAR},
+			#{burnTotal, jdbcType=VARCHAR},
+			#{hurtTotal, jdbcType=VARCHAR},
+			#{hospitalTotal, jdbcType=VARCHAR},
+			#{deathTotal, jdbcType=VARCHAR},
+			#{rangeNew, jdbcType=VARCHAR},
+			#{newInfluenceNum, jdbcType=VARCHAR},
+			#{newIsolationNum, jdbcType=VARCHAR},
+			#{communityNew, jdbcType=VARCHAR},
+			#{newIllNum, jdbcType=VARCHAR},
+			#{poisonNew, jdbcType=VARCHAR},
+			#{burnNew, jdbcType=VARCHAR},
+			#{newHurtNum, jdbcType=VARCHAR},
+			#{newHospitalNum, jdbcType=VARCHAR},
+			#{newDeathNum, jdbcType=VARCHAR},
+			#{rangeExclude, jdbcType=VARCHAR},
+			#{influenceExclude, jdbcType=VARCHAR},
+			#{isolationExclude, jdbcType=VARCHAR},
+			#{communityExclude, jdbcType=VARCHAR},
+			#{illExclude, jdbcType=VARCHAR},
+			#{poisonExclude, jdbcType=VARCHAR},
+			#{burnExclude, jdbcType=VARCHAR},
+			#{hurtExclude, jdbcType=VARCHAR},
+			#{hospitalExclude, jdbcType=VARCHAR},
+			#{deathExclude, jdbcType=VARCHAR},
+			#{evolve, jdbcType=VARCHAR},
+			#{deal, jdbcType=VARCHAR},
+			#{support, jdbcType=VARCHAR},
+			to_date(#{receiveDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{reportUnit, jdbcType=VARCHAR},
+			#{reportUnitname, jdbcType=VARCHAR},
+			#{reportIdcard, jdbcType=VARCHAR},
+			#{reportMan, jdbcType=VARCHAR},
+			#{phone, jdbcType=VARCHAR},
+			to_date(#{reportDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),
+			#{auditUnit, jdbcType=VARCHAR},
+			#{auditUnitname, jdbcType=VARCHAR},
+			#{auditIdcard, jdbcType=VARCHAR},
+			#{auditName, jdbcType=VARCHAR},
+			to_date(#{auditDate, jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'))
+    </insert >
+    
+    <update id="updateHeEventProcessReport" parameterType="com.joye.health.model.emergency.HeEventProcessReport" >
+         update  HE_EVENT_PROCESS_REPORT 
+         <set>
+				<if test= "rid != null">RID=#{rid},</if >
+				<if test= "proRid != null">PRO_RID=#{proRid},</if >
+				<if test= "endDate != null">END_DATE=to_date(#{endDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "rangeTotal != null">RANGE_TOTAL=#{rangeTotal},</if >
+				<if test= "influenceTotal != null">INFLUENCE_TOTAL=#{influenceTotal},</if >
+				<if test= "isolationTotal != null">ISOLATION_TOTAL=#{isolationTotal},</if >
+				<if test= "communityTotal != null">COMMUNITY_TOTAL=#{communityTotal},</if >
+				<if test= "illTotal != null">ILL_TOTAL=#{illTotal},</if >
+				<if test= "poisonTotal != null">POISON_TOTAL=#{poisonTotal},</if >
+				<if test= "burnTotal != null">BURN_TOTAL=#{burnTotal},</if >
+				<if test= "hurtTotal != null">HURT_TOTAL=#{hurtTotal},</if >
+				<if test= "hospitalTotal != null">HOSPITAL_TOTAL=#{hospitalTotal},</if >
+				<if test= "deathTotal != null">DEATH_TOTAL=#{deathTotal},</if >
+				<if test= "rangeNew != null">RANGE_NEW=#{rangeNew},</if >
+				<if test= "newInfluenceNum != null">NEW_INFLUENCE_NUM=#{newInfluenceNum},</if >
+				<if test= "newIsolationNum != null">NEW_ISOLATION_NUM=#{newIsolationNum},</if >
+				<if test= "communityNew != null">COMMUNITY_NEW=#{communityNew},</if >
+				<if test= "newIllNum != null">NEW_ILL_NUM=#{newIllNum},</if >
+				<if test= "poisonNew != null">POISON_NEW=#{poisonNew},</if >
+				<if test= "burnNew != null">BURN_NEW=#{burnNew},</if >
+				<if test= "newHurtNum != null">NEW_HURT_NUM=#{newHurtNum},</if >
+				<if test= "newHospitalNum != null">NEW_HOSPITAL_NUM=#{newHospitalNum},</if >
+				<if test= "newDeathNum != null">NEW_DEATH_NUM=#{newDeathNum},</if >
+				<if test= "rangeExclude != null">RANGE_EXCLUDE=#{rangeExclude},</if >
+				<if test= "influenceExclude != null">INFLUENCE_EXCLUDE=#{influenceExclude},</if >
+				<if test= "isolationExclude != null">ISOLATION_EXCLUDE=#{isolationExclude},</if >
+				<if test= "communityExclude != null">COMMUNITY_EXCLUDE=#{communityExclude},</if >
+				<if test= "illExclude != null">ILL_EXCLUDE=#{illExclude},</if >
+				<if test= "poisonExclude != null">POISON_EXCLUDE=#{poisonExclude},</if >
+				<if test= "burnExclude != null">BURN_EXCLUDE=#{burnExclude},</if >
+				<if test= "hurtExclude != null">HURT_EXCLUDE=#{hurtExclude},</if >
+				<if test= "hospitalExclude != null">HOSPITAL_EXCLUDE=#{hospitalExclude},</if >
+				<if test= "deathExclude != null">DEATH_EXCLUDE=#{deathExclude},</if >
+				<if test= "evolve != null">EVOLVE=#{evolve},</if >
+				<if test= "deal != null">DEAL=#{deal},</if >
+				<if test= "support != null">SUPPORT=#{support},</if >
+				<if test= "receiveDate != null">RECEIVE_DATE=to_date(#{receiveDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "reportUnit != null">REPORT_UNIT=#{reportUnit},</if >
+				<if test= "reportUnitname != null">REPORT_UNITNAME=#{reportUnitname},</if >
+				<if test= "reportIdcard != null">REPORT_IDCARD=#{reportIdcard},</if >
+				<if test= "reportMan != null">REPORT_MAN=#{reportMan},</if >
+				<if test= "phone != null">PHONE=#{phone},</if >
+				<if test= "reportDate != null">REPORT_DATE=to_date(#{reportDate},'yyyy-mm-dd hh24:mi:ss'),</if >
+				<if test= "auditUnit != null">AUDIT_UNIT=#{auditUnit},</if >
+				<if test= "auditUnitname != null">AUDIT_UNITNAME=#{auditUnitname},</if >
+				<if test= "auditIdcard != null">AUDIT_IDCARD=#{auditIdcard},</if >
+				<if test= "auditName != null">AUDIT_NAME=#{auditName},</if >
+				<if test= "auditDate != null">AUDIT_DATE=to_date(#{auditDate},'yyyy-mm-dd hh24:mi:ss')</if >
+         </set>
+         WHERE AUTO_ID = #{autoId}
+    </update >
+    
+    <delete id="deleteHeEventProcessReport" parameterType="String">
+		DELETE FROM HE_EVENT_PROCESS_REPORT WHERE AUTO_ID = #{value}
+	</delete>
+</mapper>  

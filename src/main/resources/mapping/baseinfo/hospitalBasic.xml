@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.joye.health.dao.baseinfo.IHospitalBasicDao">  
+    <resultMap type="com.joye.health.model.baseinfo.HospitalBasic" id="HospitalBasic">
+	</resultMap>
+    <select id="queryHospitalBasic" resultMap="HospitalBasic">
+    <![CDATA[ 
+        select
+		  AUTO_ID as autoId,
+		  UNITS_CODE as unitsCode,
+		  UNITS_NAME as unitsName,
+		  UNITS_SIMPLE_NAME as unitsSimpleName,
+		  LICENCE_CODE as licenceCode,
+		  ORGAN_CODE as organCode,
+		  CORPORATION as corporation,
+		  CORPOR_ID_NO as corporIdNo,
+		  CORPOR_PHONE as corporPhone,
+		  CORPOR_MOBILE_PHONE as corporMobilePhone,
+		  ADDRESS as address,
+		  ZIP_CODE as zipCode,
+		  PHONE as phone,
+		  FAX as fax,
+		  E_MAIL as eMail,
+		  WEBSITE as website,
+		  LINKMAN as linkman,
+		  LINKMAN_PHONE as linkmanPhone,
+		  AREA_CODE as areaCode,
+		  UNITS_CLASS as unitsClass,
+		  SUBJECT_CODE as subjectCode,
+		  ORGANIZATION_CLASS as organizationClass,
+		  LEVEL_CODE as levelCode,
+		  GRADE_CODE as gradeCode,
+		  PROPERTY_CODE as propertyCode,
+		  GAIN_SIGN as gainSign,
+		  REGISTER_CAPITAL as registerCapital,
+		  BANK as bank,
+		  BANK_ACCOUNT as bankAccount,
+		  to_char(CREATE_DATE,'yyyy-mm-dd hh24:mi:ss') as createDate,
+		  to_char(CANCEL_DATE,'yyyy-mm-dd hh24:mi:ss') as cancelDate,
+		  EMPLOYEE_BOOK_SIGN as employeeBookSign,
+		  RESIDENT_BOOK_SIGN as residentBookSign,
+		  COUNTRY_BOOK_SIGN as countryBookSign,
+		  CURRENT_STATUS as currentStatus,
+		  PHO_INPUT_CODE as phoInputCode,
+		  APPOINT_SIGN as appointSign,
+		  LIMIT_APPOINT_DAYS as limitAppointDays,
+		  LIMIT_APPOINT_TIMES as limitAppointTimes,
+		  VERIFY_SIGN as verifySign,
+		  DELETE_SIGN as deleteSign,
+		  FIVE_INPUT_CODE as fiveInputCode,
+		  CODE_LEVEL as codeLevel,
+		  PARENT_CODE as parentCode,
+		  END_SIGN as endSign,
+		  MODIFY_PERSON as modifyPerson,
+		  to_char(MODIFY_DATE,'yyyy-mm-dd hh24:mi:ss') as modifyDate,
+		  BED_NUM1 as bedNum1,
+		  BED_NUM2 as bedNum2
+		from REG_HOSPITAL_BASIC
+    ]]> 
+    </select>  
+</mapper>  
